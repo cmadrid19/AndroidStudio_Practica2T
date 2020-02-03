@@ -23,7 +23,7 @@ import com.example.controlempleados.utiles.DatePickerFragment;
 import java.util.regex.Pattern;
 
 
-public class CrearCuentaNuevaActivity extends AppCompatActivity {
+public class RegistrarseActivity extends AppCompatActivity {
 
     public static final String PREFS = "MisPreferencias";
     private static final String TAG = "CrarCuentaNuevaActivity";
@@ -201,7 +201,6 @@ public class CrearCuentaNuevaActivity extends AppCompatActivity {
 
     public void aceptarCrearNuevaCuenta(View view) {
         EditText text = findViewById(R.id.editText_email);
-
         //TODO Pasar los datos del area en formato para que el servidor lo lea, preguntar a Eugenio características
         if (validarOpcionSexo() && validarDatosEntrada() && validarEmail(text.getText().toString()) && comprobarPassword()) {
             usuario = ediTxRecogeUsuario.getText().toString();
