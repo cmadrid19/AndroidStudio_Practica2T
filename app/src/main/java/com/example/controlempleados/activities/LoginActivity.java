@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         usuario = (EditText) findViewById(R.id.edittext_usuario);
         password = (EditText) findViewById(R.id.edittext_password);
 
+        /*
         password.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+         */
     }
 
 
@@ -85,9 +87,15 @@ public class LoginActivity extends AppCompatActivity {
     //es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
     public void mandarPassword(View view) {
     }
-    //es el metodo al que llamamos cuando hacemos click en Crear cuenta nueva
+    //
 
+    /**
+     *Es el metodo al que llamamos cuando hacemos click en 'Registrarse'
+     * @param view
+     */
     public void crearCuentaNueva(View view) {
+        //TODO new activity Registro
+
     }
 
     public boolean checkUsuarioFichero() {

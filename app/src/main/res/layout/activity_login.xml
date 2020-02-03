@@ -95,7 +95,7 @@
         android:onClick="crearCuentaNueva"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/crear_cuenta_nueva"
+        android:text="@string/registrarse"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />

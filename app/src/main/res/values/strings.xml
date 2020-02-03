@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">ControlEmpleados</string>
+    <string name="usuario">Usuario</string>
+    <string name="texto_introducir_usuario">Introduce tu usuario</string>
+    <string name="texto_introducir_password">Introduce tu contraseña</string>
+    <string name="password">Contraseña</string>
+    <string name="entrar">Entrar</string>
+    <string name="olvidado_password">He olvidad mi contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">Email</string>
+    <string name="texto_introduce_email">Introduce tu email</string>
+    <string name="repite_password">Repite contraseña</string>
+    <string name="fecha_nacimiento">Fecha nacimiento</string>
+    <string name="dd_mm_aaaa">dd_mm_aaaa</string>
+    <string name="peticion_sexo">Introduce sexo</string>
+    <string name="sexo_f">F</string>
+    <string name="sexo_m">M</string>
 </resources>

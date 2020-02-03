@@ -17,6 +17,7 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        final String SQL_CREATE_ENTRIES = "";
         db.execSQL(SQL_CREATE_ENTRIES);
     }
 
