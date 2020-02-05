@@ -1,6 +1,7 @@
 package com.example.controlempleados.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,11 +21,14 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.controlempleados.R;
 import com.example.controlempleados.utiles.DatePickerFragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -74,9 +78,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         //todo setSpinnerPais();
     }
 
-    public Spinner getPaises() {
-        return paises;
-    }
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -233,7 +234,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 /**
  * Método para proveer al spinner de paises en 'RegistrarseActivity'.
  */
-    class GetCountryNames extends AsyncTask<String, Void, Void> {
+class GetCountryNames extends AsyncTask<String, Void, Void> {
     // En este método se debe escribir el código de la tarea que se ejecuta en segundo plano.
     // Android no nos permitirá acceder a ningún componente de la UI desde este método
 
@@ -244,15 +245,13 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     private Context context;
 
-    public GetCountryNames(Context ctx){
+    public GetCountryNames(Context ctx) {
         this.context = ctx;
 
     }
 
     @Override
     protected Void doInBackground(String... urls) {
-
-
         String resultado = null;
         JSONObject json = null;
         JSONArray jsonArray = null;
@@ -277,7 +276,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             jsonArray = json.getJSONArray("");
             AbstractQueue<String> listaDatos = null;
             for (int i = 0; i < jsonArray.length(); i++) {
-                Log.d(TAG, "dato recibido: "+jsonArray.get(i).toString());
+                Log.d(TAG, "dato recibido: " + jsonArray.get(i).toString());
                 //TODO
             }
         } catch (IOException ioe) {
@@ -317,7 +316,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             return;
         }
 
-       // context.adapter.notifyDataSetChanged(); // Actualiza los cambios en ListView
-        Toast.makeText(context,context.getResources().getString(R.string.datos_message), Toast.LENGTH_SHORT).show();
+        // context.adapter.notifyDataSetChanged(); // Actualiza los cambios en ListView
+        Toast.makeText(context, context.getResources().getString(R.string.datos_message), Toast.LENGTH_SHORT).show();
     }
 }
