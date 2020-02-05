@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -20,38 +22,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.controlempleados.R;
 import com.example.controlempleados.utiles.DatePickerFragment;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.AbstractQueue;
 import java.util.regex.Pattern;
 
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    public static final String PREFS = "MisPreferencias";
+    public static final String PREFS_NAME = "MisPreferencias";
     private static final String TAG = "CrarCuentaNuevaActivity";
 
-    SharedPreferences prefs;
 
     EditText ediTxRecogeEmail;
     EditText ediTxRecogeUsuario;
     EditText ediTxRecogePassword;
     EditText ediTxRecogeRepeatPassword;
-    EditText ediTxRecogePeso;
-    EditText ediTxRecogeAltura;
     EditText ediTxPlannedDatePicker;
-    Spinner paises;
 
-    public Spinner getPaises() {
-        return paises;
-    }
-
-    String email;
-    String usuario;
-    String password;
-    String repeatPassword;
-    String peso;
-    String altura;
-    String fechaNacimiento;
-    String sexo;
-    String correctPassword = null;
+    private String usuario;
+    private String password;
+    private String repeatPassword;
+    private String sexo;
+    private String correctPassword = null;
 
     // TODO Añadir listener al spinner de  paises
     @Override
@@ -60,29 +61,21 @@ public class RegistrarseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrarse);
         usuario = "";
 
-        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
         ediTxPlannedDatePicker = (EditText) findViewById(R.id.edittext_recoge_fecha_nacimiento);
         ediTxRecogeEmail = (EditText) findViewById(R.id.editText_email);
         ediTxRecogeUsuario = (EditText) findViewById(R.id.edittext_usuario);
         ediTxRecogePassword = (EditText) findViewById(R.id.edittext_password);
         ediTxRecogeRepeatPassword = (EditText) findViewById(R.id.edittext_repeat_password);
-        paises = findViewById(R.id.paises_spinner);
+        Spinner paises = findViewById(R.id.paises_spinner);
 
 
         //todo setSpinnerPais();
+    }
 
-
-        ediTxPlannedDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.edittext_recoge_fecha_nacimiento:
-                        showDatePickerDialog();
-                        break;
-                }
-            }
-        });
+    public Spinner getPaises() {
+        return paises;
     }
 
     private void showDatePickerDialog() {
@@ -132,9 +125,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         return (campoObligatorio(ediTxRecogeEmail) &&
                 campoObligatorio(ediTxRecogeUsuario) &&
                 campoObligatorio(ediTxRecogePassword) &&
-                campoObligatorio(ediTxRecogeRepeatPassword) &&
-                campoObligatorio(ediTxRecogeAltura) &&
-                campoObligatorio(ediTxRecogePeso));
+                campoObligatorio(ediTxRecogeRepeatPassword));
     }
 
     private String getValorSpinner() {
@@ -203,20 +194,19 @@ public class RegistrarseActivity extends AppCompatActivity {
         EditText text = findViewById(R.id.editText_email);
         //TODO Pasar los datos del area en formato para que el servidor lo lea, preguntar a Eugenio características
         if (validarOpcionSexo() && validarDatosEntrada() && validarEmail(text.getText().toString()) && comprobarPassword()) {
+
+            String email;
+
             usuario = ediTxRecogeUsuario.getText().toString();
             correctPassword = ediTxRecogePassword.getText().toString();
             email = ediTxRecogeEmail.getText().toString();
-            peso = ediTxRecogePeso.getText().toString();
-            altura = ediTxRecogeAltura.getText().toString();
-            fechaNacimiento = ediTxPlannedDatePicker.getText().toString();
+            String fechaNacimiento = ediTxPlannedDatePicker.getText().toString();
 
             Log.d(TAG, "el email es: " + email);
             Log.d(TAG, "el usuario es: " + usuario);
             Log.d(TAG, "la Contraseña del usuario es: " + password);
             Log.d(TAG, "la  repeticion de contraseña del usuario es: " + repeatPassword);
             Log.d(TAG, "la  contraseña definitiva es: " + correctPassword);
-            Log.d(TAG, "el peso del usuario es: " + peso);
-            Log.d(TAG, "la altura del usuario es: " + altura);
             Log.d(TAG, "la fecha de nacimiento es: " + fechaNacimiento);
             Log.d(TAG, "el sexo del usuario es: " + sexo);
 
@@ -236,5 +226,98 @@ public class RegistrarseActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
         this.finish();
 
+    }
+}
+
+
+/**
+ * Método para proveer al spinner de paises en 'RegistrarseActivity'.
+ */
+    class GetCountryNames extends AsyncTask<String, Void, Void> {
+    // En este método se debe escribir el código de la tarea que se ejecuta en segundo plano.
+    // Android no nos permitirá acceder a ningún componente de la UI desde este método
+
+
+    public static final String COUNTRIES_NAMES_URL = "https://api.printful.com/countries";
+    private static final String TAG = "Async task: GetCounrtyNames";
+    private Boolean error = false;
+
+    private Context context;
+
+    public GetCountryNames(Context ctx){
+        this.context = ctx;
+
+    }
+
+    @Override
+    protected Void doInBackground(String... urls) {
+
+
+        String resultado = null;
+        JSONObject json = null;
+        JSONArray jsonArray = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            // Conecta con la URL y obtenemos el fichero con los datos
+            URL url = new URL(urls[0]);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            // Lee el fichero y genera una cadena de texto con el JSON en resultado
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            StringBuilder sb = new StringBuilder();
+            String linea = null;
+            while ((linea = br.readLine()) != null) {
+                sb.append(linea + "\n");
+            }
+            br.close();
+            resultado = sb.toString();
+            // Se carga el resultado como un objeto JSON
+            json = new JSONObject(resultado);
+            // Obtiene el JSON como un array de datos
+            jsonArray = json.getJSONArray("");
+            AbstractQueue<String> listaDatos = null;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                Log.d(TAG, "dato recibido: "+jsonArray.get(i).toString());
+                //TODO
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            error = true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            urlConnection.disconnect();
+        }
+
+
+        return null;
+    }
+
+    // Este método se ejecuta cuando se cancela la tarea, permite interactuar con la UI
+    @Override
+    protected void onCancelled() {
+        super.onCancelled();
+    }
+
+    // Este método se ejecuta a medida que avanza la tarea. Permite actualizar parte
+    // de la UI para que el usuario pueda ver el avance de la misma
+    protected void onProgressUpdate(Void progreso) {
+        super.onProgressUpdate(progreso);
+    }
+
+    // Este método se ejecuta automáticamente cuando la tarea
+    // termina (cuando termina el método ''doInBackground'')
+    // Permite interactuar con la GUI con lo que podemos comunicar
+    // al usuario la finalización de la tarea o mensajes de error
+    @Override
+    protected void onPostExecute(Void resultado) {
+        super.onPostExecute(resultado);
+        if (error) {
+            Toast.makeText(context, context.getResources().getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+       // context.adapter.notifyDataSetChanged(); // Actualiza los cambios en ListView
+        Toast.makeText(context,context.getResources().getString(R.string.datos_message), Toast.LENGTH_SHORT).show();
     }
 }

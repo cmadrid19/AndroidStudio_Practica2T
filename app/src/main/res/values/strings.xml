@@ -15,4 +15,9 @@
     <string name="peticion_sexo">Introduce sexo</string>
     <string name="sexo_f">F</string>
     <string name="sexo_m">M</string>
+    <string name="error_message">Fallo del servidor, 0 datos recibidos</string>
+    <string name="datos_message">Más datos recibidos desde el servidor</string>
+    <string name="pais">País</string>
+    <string name="texto_pais_residencia">Introduce país de residencia</string>
+    <string name="crear_cuenta">Crear cuenta</string>
 </resources>
