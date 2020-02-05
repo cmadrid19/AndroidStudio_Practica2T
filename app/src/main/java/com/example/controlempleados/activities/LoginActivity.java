@@ -1,12 +1,10 @@
 package com.example.controlempleados.activities;
-
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -84,17 +82,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    //es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
-    public void mandarPassword(View view) {
-    }
-    //
-
     /**
      *Es el metodo al que llamamos cuando hacemos click en 'Registrarse'
      * @param view
      */
     public void crearCuentaNueva(View view) {
-        //TODO new activity Registro
+        Intent intent = new Intent(this, RegistrarseActivity.class);
+        startActivity(intent);
 
     }
 
@@ -130,4 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    //es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
+    public void restablecerPassword(View view) {
+    }
 }

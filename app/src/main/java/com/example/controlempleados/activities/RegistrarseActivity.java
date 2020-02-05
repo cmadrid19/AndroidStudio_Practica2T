@@ -244,9 +244,11 @@ class GetCountryNames extends AsyncTask<String, Void, Void> {
     private Boolean error = false;
 
     private Context context;
+    private Adapter adapter;
 
-    public GetCountryNames(Context ctx) {
+    public GetCountryNames(Context ctx, Adapter adapter) {
         this.context = ctx;
+        this.adapter = adapter;
 
     }
 
@@ -287,8 +289,6 @@ class GetCountryNames extends AsyncTask<String, Void, Void> {
         } finally {
             urlConnection.disconnect();
         }
-
-
         return null;
     }
 
