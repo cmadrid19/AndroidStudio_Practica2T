@@ -2,21 +2,24 @@ package com.example.controlempleados.bean;
 
 public class User {
 
-    int id;
-    String firstName;
-    String surName;
-    String password;
-    String birthDate;
-    String email;
+    protected int id;
+    protected String email;
+    protected String name;
+    protected String password;
+    protected String birthDate;
+    protected char gender;
+    protected String nationality;
 
-    public User(int id, String name, String surName, String password, String birthDate, String email) {
+    public User(int id, String email, String name, String password, String birthDate, char gender, String nationality) {
         this.id = id;
-        this.firstName = name;
-        this.surName = surName;
+        this.email = email;
+        this.name = name;
         this.password = password;
         this.birthDate = birthDate;
-        this.email = email;
+        this.gender = gender;
+        this.nationality = nationality;
     }
+
 
     public int getId() {
         return id;
@@ -27,19 +30,11 @@ public class User {
     }
 
     public String getName() {
-        return firstName;
+        return name;
     }
 
     public void setName(String name) {
-        this.firstName = name;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
+        this.name = name;
     }
 
     public String getPassword() {
@@ -66,15 +61,33 @@ public class User {
         this.email = email;
     }
 
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + firstName + '\'' +
-                ", surName='" + surName + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", nationality='" + nationality + '\'' +
                 '}';
     }
 }

@@ -12,15 +12,16 @@ public class Empleado {
     String gender;
     int phone;
     String location;
-    Uri avatar;
+    String avatar;
     String department;
     String language;
     String hiringDate;
     String birthDate;
+    String nationlity;
 
     public Empleado(int id, String firstName, String last_name, String email, String gender,
-                    int phone, String location, Uri avatar, String department, String language,
-                    String hiringDate, String birthDate) {
+                    int phone, String location, String avatar, String department, String language,
+                    String hiringDate, String birthDate, String nationlity) {
         this.id = id;
         this.firstName = firstName;
         this.last_name = last_name;
@@ -33,6 +34,7 @@ public class Empleado {
         this.language = language;
         this.hiringDate = hiringDate;
         this.birthDate = birthDate;
+        this.nationlity = nationlity;
     }
 
     public int getId() {
@@ -91,14 +93,6 @@ public class Empleado {
         this.location = location;
     }
 
-    public Uri getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(Uri avatar) {
-        this.avatar = avatar;
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -127,6 +121,22 @@ public class Empleado {
         return birthDate;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getNationlity() {
+        return nationlity;
+    }
+
+    public void setNationlity(String nationlity) {
+        this.nationlity = nationlity;
+    }
+
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
@@ -141,11 +151,12 @@ public class Empleado {
                 ", gender='" + gender + '\'' +
                 ", phone=" + phone +
                 ", location='" + location + '\'' +
-                ", avatar=" + avatar +
+                ", avatar='" + avatar + '\'' +
                 ", department='" + department + '\'' +
                 ", language='" + language + '\'' +
                 ", hiringDate='" + hiringDate + '\'' +
                 ", birthDate='" + birthDate + '\'' +
+                ", nationlity='" + nationlity + '\'' +
                 '}';
     }
 }

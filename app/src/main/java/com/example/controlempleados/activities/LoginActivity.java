@@ -14,9 +14,7 @@ import com.example.controlempleados.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-
     private static final String TAG = "LoginActivity";
-
     TextView usuario;
     TextView password;
 
