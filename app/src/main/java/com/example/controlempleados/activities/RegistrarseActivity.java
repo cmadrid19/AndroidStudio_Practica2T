@@ -38,13 +38,8 @@ import java.util.regex.Pattern;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
-=======
-    public static final String PREFS_NAME = "MisPreferencias";
->>>>>>> 0ae4d7b99808c6e84cf5e8f989f461a75eb56ca1
     private static final String TAG = "CrearCuentaNuevaActivit";
     private static DataBase db = null;
-
 
     EditText ediTxRecogeUsuario;
     EditText editTextPassword;
