@@ -93,7 +93,7 @@ public class DataBase extends SQLiteOpenHelper {
     public void insertarUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.execSQL("INSERT INTO USERS_DB_NAME (email,name, pasword, birth_date, gender, nationality) " +
-                "VALUES (" +user.getEmail()+","+user.getName() +","+user.getPassword() +","
+                "VALUES ( " +user.getEmail()+","+user.getName() +","+user.getPassword() +","
                 +user.getBirthDate()+ ","+user.getGender() + "," +user.getNationality()+")");
         this.cerrarBaseDatos(database);
     }

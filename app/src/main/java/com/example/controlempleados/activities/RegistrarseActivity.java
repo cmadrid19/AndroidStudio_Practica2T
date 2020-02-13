@@ -38,8 +38,7 @@ import java.util.regex.Pattern;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    public static final String PREFS_NAME = "MisPreferencias";
-    private static final String TAG = "CrearCuentaNuevaActivity";
+    private static final String TAG = "CrearCuentaNuevaActivit";
     private static DataBase db = null;
 
 
@@ -52,7 +51,6 @@ public class RegistrarseActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList paises;
 
-    // TODO Añadir listener al spinner de  paises
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,15 +84,6 @@ public class RegistrarseActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-        //TODO borrar esto , es de perueba
-        // no encuentra en la base de datos dicha tabla
-        db.insertarUser(new User("a", "a", "a", "04-04-2001", 'M', "españa"));
-
-
-
     }
 
     private void showDatePickerDialog() {
@@ -186,7 +175,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
             User user = new User(email,usuario, pass, fechaNacimiento, sexo, nacionalidad);
 
-            //TODO llega hasta aqui, lo he debugeado (peude que falle al insertar los datos)
+            
             db.insertarUser(user);
 
 
