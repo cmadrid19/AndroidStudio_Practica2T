@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
@@ -43,7 +42,7 @@ public class DataBase extends SQLiteOpenHelper {
 
         final String SQL_TABLE_WORKERS = " CREATE TABLE " + WORKERS_DB_NAME
                 + " ( "
-                + WORKER_ID + "INTEGER PRIMARY KEY, "
+                + WORKER_ID + " INTEGER PRIMARY KEY, "
                 + WORKER_NAME + " TEXT, "
                 + WORKER_SURNAME + " TEXT,"
                 + WORKER_EMAIL + " TEXT,"
@@ -75,7 +74,7 @@ public class DataBase extends SQLiteOpenHelper {
                 + USER_EMAIL + " TEXT, "
                 + USER_NAME + " TEXT, "
                 + USER_PASWORD + " TEXT, "
-                + BIRTH_DATE + " TEXT,"
+                + BIRTH_DATE + " DATE,"
                 + USER_GENDER + " TEXT, "
                 + USER_NATIONALITY + " TEXT"
                 + " ) ";
@@ -93,9 +92,9 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void insertarUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL("INSERT INTO USERS_DB_NAME (id, email,name, pasword, birth_date, gender, nationality ) " +
-                "VALUES (" + user.getId() + " , '" + user.getEmail() + "','" + user.getName() + "','" + user.getPassword() + "'," +
-                "'" + user.getBirthDate() + "','" + user.getGender() + "','" + user.getNationality());
+        database.execSQL("INSERT INTO USERS_DB_NAME (email,name, pasword, birth_date, gender, nationality) " +
+                "VALUES (" +user.getEmail()+","+user.getName() +","+user.getPassword() +","
+                +user.getBirthDate()+ ","+user.getGender() + "," +user.getNationality()+")");
         this.cerrarBaseDatos(database);
     }
 
@@ -126,7 +125,7 @@ public class DataBase extends SQLiteOpenHelper {
             genderAux = cursor.getString(5);
             nationalityAux = cursor.getString(6);
 
-            user = new User(auxId, emailAux, nombreAux, paswordAux, birthDateAux, genderAux.charAt(0), nationalityAux);
+            user = new User(emailAux, nombreAux, paswordAux, birthDateAux, genderAux.charAt(0), nationalityAux);
 
             cursor.close();
         }
@@ -168,7 +167,6 @@ public class DataBase extends SQLiteOpenHelper {
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
-
             do {
                 id = cursor.getInt(0);
                 name = cursor.getString(1);
@@ -178,11 +176,11 @@ public class DataBase extends SQLiteOpenHelper {
                 phone = cursor.getInt(5);
                 location = cursor.getString(6);
                 avatar = cursor.getString(7);
-                department=cursor.getString(8);
-                language=cursor.getString(9);
-                hiringDate=cursor.getString(10);
-                birthDate=cursor.getString(11);
-                nationality=cursor.getString(12);
+                department = cursor.getString(8);
+                language = cursor.getString(9);
+                hiringDate = cursor.getString(10);
+                birthDate = cursor.getString(11);
+                nationality = cursor.getString(12);
 
                 empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
                         department, language, hiringDate, birthDate, nationality);
@@ -190,10 +188,8 @@ public class DataBase extends SQLiteOpenHelper {
                 listaEmpleados.add(empleado);
 
             } while (cursor.moveToNext());
-
             cursor.close();
         }
-
         this.cerrarBaseDatos(basedatos);
         return listaEmpleados;
     }

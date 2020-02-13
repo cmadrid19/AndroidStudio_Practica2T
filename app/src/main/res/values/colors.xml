@@ -6,4 +6,5 @@
     <color name="negro">#000000</color>
     <color name="colorPrimaryClear">#FF0000</color>
     <color name="grisOscuro">#CCC</color>
+    <color name="green_background_layer">#33AD33</color>
 </resources>

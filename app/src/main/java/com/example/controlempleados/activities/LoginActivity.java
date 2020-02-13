@@ -3,6 +3,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
         verificaIntent();
         usuario = (EditText) findViewById(R.id.edittext_usuario);
-        password = (EditText) findViewById(R.id.edittext_password);
+        password = (EditText) findViewById(R.id.edittext_password_logn_in);
 
         /*
         password.setOnKeyListener(new View.OnKeyListener() {
@@ -75,8 +77,6 @@ public class LoginActivity extends AppCompatActivity {
         //startActivity(new Intent(LoginActivity.this, PrincipalActivity.class));
         //hacerLlamada(recoge_usuario, recoge_password);
 
-        ProgressBar barra = findViewById(R.id.progressBar);
-        barra.setVisibility(View.VISIBLE);
     }
 
 
@@ -85,9 +85,12 @@ public class LoginActivity extends AppCompatActivity {
      * @param view
      */
     public void crearCuentaNueva(View view) {
-        Intent intent = new Intent(this, RegistrarseActivity.class);
-        startActivity(intent);
-
+        if(haveNetwork() == true){
+            Intent intent = new Intent(this, RegistrarseActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, getResources().getString(R.string.sin_conexion_internet), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public boolean checkUsuarioFichero() {
@@ -124,5 +127,23 @@ public class LoginActivity extends AppCompatActivity {
 
     //es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
     public void restablecerPassword(View view) {
+    }
+
+    private boolean haveNetwork() {
+        boolean status = false;
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        // connected to the internet
+        if (activeNetwork != null) {
+            status = true;
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                // connected to wifi
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                // connected to mobile data
+            }
+        }else{
+            // NOT connected to the internet
+        }
+        return status;
     }
 }

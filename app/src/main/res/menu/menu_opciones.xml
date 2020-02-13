@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--TODO Añadir iconos-->
+    <item
+        android:id="@+id/menu_anhadir_empleado"
+        android:orderInCategory="1"
+        android:title="@string/anhadir_empelado"
+        app:showAsAction="never"></item>
+
+    <item
+        android:id="@+id/menu_borrar_empleado"
+        android:orderInCategory="2"
+        android:title="@string/borrar_empelado"
+        app:showAsAction="never"></item>
+
+    <item
+        android:id="@+id/menu_acerca_de"
+        android:orderInCategory="3"
+        android:title="@string/acerca_de"
+        app:showAsAction="never"></item>
+
+    <item
+        android:id="@+id/menu_salir"
+        android:orderInCategory="4"
+        android:title="@string/salir"
+        app:showAsAction="never"></item>
+</menu>
