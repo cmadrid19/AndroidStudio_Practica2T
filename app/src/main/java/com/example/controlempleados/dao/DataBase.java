@@ -202,4 +202,60 @@ public class DataBase extends SQLiteOpenHelper {
         return listaEmpleados;
     }
 
+    public void SetTablaEmpleados() {
+        String ListaQueries = "";
+
+        List<Empleado> listaEmpleados = null;
+        Empleado empleado = null;
+
+        int id = -1;
+        String name = "";
+        String surname = "";
+        String email = "";
+        String gender = "";
+        int phone = -1;
+        String location = "";
+        String avatar = "";
+        String department = "";
+        String language = "";
+        String hiringDate = "";
+        String birthDate = "";
+        String nationality = "";
+
+        String consulta = "SELECT * FROM WORKERS_DB_NAME";
+
+        SQLiteDatabase basedatos = this.getReadableDatabase();
+        Cursor cursor = basedatos.rawQuery(consulta, null);
+
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
+            do {
+                id = cursor.getInt(0);
+                name = cursor.getString(1);
+                surname = cursor.getString(2);
+                email = cursor.getString(3);
+                gender = cursor.getString(4);
+                phone = cursor.getInt(5);
+                location = cursor.getString(6);
+                avatar = cursor.getString(7);
+                department = cursor.getString(8);
+                language = cursor.getString(9);
+                hiringDate = cursor.getString(10);
+                birthDate = cursor.getString(11);
+                nationality = cursor.getString(12);
+
+                empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
+                        department, language, hiringDate, birthDate, nationality);
+
+                listaEmpleados.add(empleado);
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        this.cerrarBaseDatos(basedatos);
+
+    }
+
 }

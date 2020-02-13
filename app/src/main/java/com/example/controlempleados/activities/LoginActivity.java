@@ -95,14 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    //Es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
-    public void restablecerPassword(View view) {
-    }
-
-
     private boolean haveNetwork() {
         boolean status = false;
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -133,5 +125,11 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, getResources().getString(R.string.sin_conexion_internet), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //TODO falta
+    //Es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
+    public void restablecerPassword(View view) {
+
     }
 }
