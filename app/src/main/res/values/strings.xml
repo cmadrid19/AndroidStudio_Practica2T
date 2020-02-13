@@ -15,9 +15,15 @@
     <string name="peticion_sexo">Introduce sexo</string>
     <string name="sexo_f">F</string>
     <string name="sexo_m">M</string>
-    <string name="error_message">Fallo del servidor, 0 datos recibidos</string>
-    <string name="datos_message">Más datos recibidos desde el servidor</string>
+    <string name="error_mensage">Fallo al intentar cargar los paises...</string>
     <string name="pais">País</string>
     <string name="texto_pais_residencia">Introduce país de residencia</string>
     <string name="crear_cuenta">Crear cuenta</string>
+    <string name="sin_conexion_internet">No hay conexión a internet</string>
+    <string name="ruta_paises">https://api.printful.com/countries</string>
+    <string name="pais_no_seleccionado">Sin seleccionar</string>
+    <string name="rellena_campos">Rellena todos los campos</string>
+    <string name="contrasenha_no_coincide">las contraseñas no coinciden</string>
+    <string name="email_formato_incorrecto">El formato del email debe ser correcto</string>
+    <string name="sexo_no_elegido">Debes elegir un sexo</string>
 </resources>
