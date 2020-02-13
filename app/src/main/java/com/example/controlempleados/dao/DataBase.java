@@ -4,13 +4,37 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQuery;
+import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.bean.User;
 
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.NClob;
+import java.sql.ParameterMetaData;
+import java.sql.PreparedStatement;
+import java.sql.Ref;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.RowId;
+import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
@@ -92,9 +116,17 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void insertarUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL("INSERT INTO USERS_DB_NAME (email,name, pasword, birth_date, gender, nationality) " +
-                "VALUES (" +user.getEmail()+","+user.getName() +","+user.getPassword() +","
-                +user.getBirthDate()+ ","+user.getGender() + "," +user.getNationality()+")");
+
+        SQLiteStatement query = database.compileStatement("INSERT INTO USERS (email,name, pasword, birth_date, gender, nationality) VALUES (?, ?, ?, ?, ?, ?)");
+        query.bindString(1, user.getEmail());
+        query.bindString(2, user.getName());
+        query.bindString(3, user.getPassword());
+        query.bindString(4, user.getBirthDate());
+        query.bindString(5, String.valueOf(user.getGender()));
+        query.bindString(6, user.getNationality());
+
+        query.executeInsert();
+
         this.cerrarBaseDatos(database);
     }
 
@@ -109,7 +141,7 @@ public class DataBase extends SQLiteOpenHelper {
         String genderAux = "";
         String nationalityAux = "";
 
-        String consulta = "SELECT * FROM USERS_DB_NAME WHERE email LIKE %" + email + "% AND WHERE pasword LIKE %" + pass + "%;";
+        String consulta = "SELECT * FROM USERS WHERE email LIKE %" + email + "% AND WHERE pasword LIKE %" + pass + "%;";
 
         SQLiteDatabase basedatos = this.getReadableDatabase();
         Cursor cursor = basedatos.rawQuery(consulta, null);

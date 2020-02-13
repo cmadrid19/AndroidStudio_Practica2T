@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 public class RegistrarseActivity extends AppCompatActivity {
 
     public static final String PREFS_NAME = "MisPreferencias";
-    private static final String TAG = "CrearCuentaNuevaActivity";
+    private static final String TAG = "CrearCuentaNuevaActivit";
     private static DataBase db = null;
 
 
@@ -182,17 +182,17 @@ public class RegistrarseActivity extends AppCompatActivity {
             Log.d(TAG, "la Contraseña del usuario es: " + pass);
             Log.d(TAG, "la fecha de nacimiento es: " + fechaNacimiento);
             Log.d(TAG, "el sexo del usuario es: " + sexo);
-            Log.d(TAG, "el sexo del usuario es: " + nacionalidad);
+            Log.d(TAG, "La nacionalidad es: " + nacionalidad);
 
             User user = new User(email,usuario, pass, fechaNacimiento, sexo, nacionalidad);
 
             //TODO llega hasta aqui, lo he debugeado (peude que falle al insertar los datos)
             db.insertarUser(user);
 
+            Toast.makeText(this, "Usuario " + user.getName() + " registrado!", Toast.LENGTH_LONG).show();
 
-
-            //Intent intent = (new Intent(this, MainActivity.class));
-            //startActivity(intent);
+            Intent intent = (new Intent(this, MainActivity.class));
+            startActivity(intent);
             //añadir preferencias
 
         } else {

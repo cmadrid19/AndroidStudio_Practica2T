@@ -19,9 +19,7 @@
     <string name="pais">País</string>
     <string name="texto_pais_residencia">Introduce país de residencia</string>
     <string name="crear_cuenta">Crear cuenta</string>
-<<<<<<< HEAD
     <string name="COUNTRIES_NAMES_URL">https://api.printful.com/countries</string>
-=======
     <string name="sin_conexion_internet">No hay conexión a internet</string>
     <string name="ruta_paises">https://api.printful.com/countries</string>
     <string name="pais_no_seleccionado">Sin seleccionar</string>
@@ -33,5 +31,4 @@
     <string name="salir">Salir</string>
     <string name="anhadir_empelado">Añadir empleado</string>
     <string name="borrar_empelado">Borrar empleado</string>
->>>>>>> 927fa68c68b4de66cc1eb15f5a09af880cabcee8
 </resources>
