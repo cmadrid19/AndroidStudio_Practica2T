@@ -38,6 +38,10 @@ import java.util.regex.Pattern;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
+=======
+    public static final String PREFS_NAME = "MisPreferencias";
+>>>>>>> 0ae4d7b99808c6e84cf5e8f989f461a75eb56ca1
     private static final String TAG = "CrearCuentaNuevaActivit";
     private static DataBase db = null;
 
@@ -171,17 +175,17 @@ public class RegistrarseActivity extends AppCompatActivity {
             Log.d(TAG, "la Contraseña del usuario es: " + pass);
             Log.d(TAG, "la fecha de nacimiento es: " + fechaNacimiento);
             Log.d(TAG, "el sexo del usuario es: " + sexo);
-            Log.d(TAG, "el sexo del usuario es: " + nacionalidad);
+            Log.d(TAG, "La nacionalidad es: " + nacionalidad);
 
             User user = new User(email,usuario, pass, fechaNacimiento, sexo, nacionalidad);
 
             
             db.insertarUser(user);
 
+            Toast.makeText(this, "Usuario " + user.getName() + " registrado!", Toast.LENGTH_LONG).show();
 
-
-            //Intent intent = (new Intent(this, MainActivity.class));
-            //startActivity(intent);
+            Intent intent = (new Intent(this, MainActivity.class));
+            startActivity(intent);
             //añadir preferencias
 
         } else {

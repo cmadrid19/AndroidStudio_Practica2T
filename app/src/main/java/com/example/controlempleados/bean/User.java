@@ -1,14 +1,16 @@
 package com.example.controlempleados.bean;
 
+import androidx.annotation.NonNull;
+
 public class User {
 
-    protected int id;
-    protected String email;
-    protected String name;
-    protected String password;
-    protected String birthDate;
-    protected char gender;
-    protected String nationality;
+    private int id;
+    private String email;
+    private String name;
+    private String password;
+    private String birthDate;
+    private char gender;
+    private String nationality;
 
     public User(String email, String name, String password, String birthDate, char gender, String nationality) {
         this.email = email;
@@ -76,7 +78,7 @@ public class User {
         this.nationality = nationality;
     }
 
-
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
