@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
         verificaIntent();
         usuario = (EditText) findViewById(R.id.edittext_usuario);
-        password = (EditText) findViewById(R.id.edittext_password);
+        password = (EditText) findViewById(R.id.edittext_password_logn_in);
 
         /*
         password.setOnKeyListener(new View.OnKeyListener() {

@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -63,6 +64,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         ediTxRecogeUsuario = (EditText) findViewById(R.id.edittext_usuario);
         editTextPassword = (EditText) findViewById(R.id.edittext_password_sign_in);
         editTextRepeatPassword = (EditText) findViewById(R.id.edittext_repeat_password_sign_in);
+        ediTxPlannedDatePicker = findViewById(R.id.edittext_recoge_fecha_nacimiento);
 
         //Spinner contries
         spinner = findViewById(R.id.paises_spinner);
@@ -72,18 +74,16 @@ public class RegistrarseActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         new GetCountryNames().execute();
 
-        ediTxPlannedDatePicker = (EditText) findViewById(R.id.edittext_recoge_fecha_nacimiento);
-        ediTxPlannedDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.edittext_recoge_fecha_nacimiento:
-                        showDatePickerDialog();
-                        break;
-                }
-            }
-        });
+
     }
+
+    public void escogerFecha(View view) {
+        //Para que no se abra el teclado
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        showDatePickerDialog();
+    }
+
 
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -104,7 +104,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         if (!fecha.matches("")){
             fechaEscogida = true;
         }
-
         return fechaEscogida;
     }
 
@@ -173,16 +172,10 @@ public class RegistrarseActivity extends AppCompatActivity {
             Log.d(TAG, "La nacionalidad es: " + nacionalidad);
 
             User user = new User(email,usuario, pass, fechaNacimiento, sexo, nacionalidad);
-
-            
             db.insertarUser(user);
 
-            Toast.makeText(this, "Usuario " + user.getName() + " registrado!", Toast.LENGTH_LONG).show();
-
-            Intent intent = (new Intent(this, MainActivity.class));
+            Intent intent = (new Intent(this, LoginActivity.class));
             startActivity(intent);
-            //añadir preferencias
-
         } else {
             Toast.makeText(this, getResources().getString(R.string.rellena_campos), Toast.LENGTH_SHORT).show();
         }
@@ -194,6 +187,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
         this.finish();
     }
+
 
 
     class GetCountryNames extends AsyncTask<String, Void, Void> {

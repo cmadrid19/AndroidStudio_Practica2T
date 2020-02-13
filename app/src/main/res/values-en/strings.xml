@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ControlEmpleados</string>
+    <string name="acerca_de">About</string>
+    <string name="anhadir_empelado">Add employee</string>
+    <string name="borrar_empelado">Remove employee</string>
+    <string name="contrasenha_no_coincide">Passwords don\'t match</string>
+    <string name="crear_cuenta">Create account</string>
+    <string name="email">Email</string>
+    <string name="email_formato_incorrecto">The email format must be correct</string>
+    <string name="entrar">" Get in"</string>
+    <string name="error_mensage">Failed attempt while trying to load countries</string>
+    <string name="fecha_nacimiento">Birth date</string>
+    <string name="olvidado_password">"I forgot my password "</string>
+    <string name="pais">Country</string>
+    <string name="pais_no_seleccionado">Not selected</string>
+    <string name="password">Password</string>
+    <string name="peticion_sexo">Enter sex</string>
+    <string name="registrarse">"Check in "</string>
+    <string name="rellena_campos">"Fill in all the fields "</string>
+    <string name="repite_password">"Repeat password "</string>
+    <string name="salir">Exit</string>
+    <string name="sexo_f">F</string>
+    <string name="sexo_m">M</string>
+    <string name="sexo_no_elegido">You must choose a sex</string>
+    <string name="sin_conexion_internet">There is no Internet conection</string>
+    <string name="texto_introduce_email">"Enter your email "</string>
+    <string name="texto_introducir_password">Enter your password</string>
+    <string name="texto_introducir_usuario">Enter your user</string>
+    <string name="texto_pais_residencia">" Enter country of residence"</string>
+    <string name="usuario">User</string>
+    <string name="dd_mm_aaaa">dd_mm_aaaa</string>
+</resources>
