@@ -16,7 +16,7 @@
     <string name="pais_no_seleccionado">Not selected</string>
     <string name="password">Password</string>
     <string name="peticion_sexo">Enter sex</string>
-    <string name="registrarse">"Check in "</string>
+    <string name="registrarse">"Sign in "</string>
     <string name="rellena_campos">"Fill in all the fields "</string>
     <string name="repite_password">"Repeat password "</string>
     <string name="salir">Exit</string>

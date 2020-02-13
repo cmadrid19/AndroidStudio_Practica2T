@@ -31,4 +31,5 @@
     <string name="salir">Salir</string>
     <string name="anhadir_empelado">Añadir empleado</string>
     <string name="borrar_empelado">Borrar empleado</string>
+    <string name="exito_log_in">Exito en el login</string>
 </resources>

@@ -4,37 +4,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQuery;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.controlempleados.activities.LoginActivity;
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.bean.User;
-
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
@@ -130,9 +109,8 @@ public class DataBase extends SQLiteOpenHelper {
         this.cerrarBaseDatos(database);
     }
 
-    public User checkLogin(String email, String pass) {
+    public User checkLogin(String name, String pass) {
         User user = null;
-
         int auxId = -1;
         String emailAux = "";
         String nombreAux = "";
@@ -141,24 +119,22 @@ public class DataBase extends SQLiteOpenHelper {
         String genderAux = "";
         String nationalityAux = "";
 
-        String consulta = "SELECT * FROM USERS WHERE email LIKE %" + email + "% AND WHERE pasword LIKE %" + pass + "%;";
+        String consulta = "SELECT * FROM USERS WHERE name LIKE "+"\""+ name +"\""+" AND pasword LIKE "+"\""+ pass +"\"";
 
         SQLiteDatabase basedatos = this.getReadableDatabase();
         Cursor cursor = basedatos.rawQuery(consulta, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-
-            auxId = cursor.getInt(0); //la posicion primera, el id
+            //auxId = cursor.getInt(0); //la posicion primera, el id
             emailAux = cursor.getString(1);
             nombreAux = cursor.getString(2); //la posicion segunda, el id
-            paswordAux = ""; //cursor.getString(3);
+            paswordAux = cursor.getString(3);
             birthDateAux = cursor.getString(4);
             genderAux = cursor.getString(5);
             nationalityAux = cursor.getString(6);
 
             user = new User(emailAux, nombreAux, paswordAux, birthDateAux, genderAux.charAt(0), nationalityAux);
-
             cursor.close();
         }
 
