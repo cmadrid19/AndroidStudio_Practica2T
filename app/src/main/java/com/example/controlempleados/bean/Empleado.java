@@ -3,21 +3,22 @@ package com.example.controlempleados.bean;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
-public class Empleado {
+import androidx.annotation.NonNull;
 
-    int id;
-    String firstName;
-    String last_name;
-    String email;
-    String gender;
-    int phone;
-    String location;
-    String avatar;
-    String department;
-    String language;
-    String hiringDate;
-    String birthDate;
-    String nationlity;
+public class Empleado {
+    private int id;
+    private String firstName;
+    private String last_name;
+    private String email;
+    private String gender;
+    private int phone;
+    private String location;
+    private String avatar;
+    private String department;
+    private String language;
+    private String hiringDate;
+    private String birthDate;
+    private String nationlity;
 
     public Empleado(int id, String firstName, String last_name, String email, String gender,
                     int phone, String location, String avatar, String department, String language,
@@ -141,6 +142,7 @@ public class Empleado {
         this.birthDate = birthDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Empleado{" +

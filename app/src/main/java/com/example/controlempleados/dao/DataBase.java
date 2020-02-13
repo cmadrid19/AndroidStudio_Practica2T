@@ -170,7 +170,6 @@ public class DataBase extends SQLiteOpenHelper {
             listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
 
             do {
-
                 id = cursor.getInt(0);
                 name = cursor.getString(1);
                 surname = cursor.getString(2);
