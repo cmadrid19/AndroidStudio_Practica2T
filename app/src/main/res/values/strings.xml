@@ -26,4 +26,8 @@
     <string name="contrasenha_no_coincide">las contraseñas no coinciden</string>
     <string name="email_formato_incorrecto">El formato del email debe ser correcto</string>
     <string name="sexo_no_elegido">Debes elegir un sexo</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="salir">Salir</string>
+    <string name="anhadir_empelado">Añadir empleado</string>
+    <string name="borrar_empelado">Borrar empleado</string>
 </resources>
