@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO
+        //TODO HAY QUE CONVERTIR el fichero 'Workers.sql' que se encuentra en la raiz del proyecto a .db  ;; Creo que se puede de csv a SQLite
         /*
            - Modelo Usuario Registrarse y entrar.
         * 1. Recycler view: handleview, modelo,
