@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.AcercaDeActivity"></activity>
         <activity android:name=".activities.AnhadirEmpleadoActivity" />
-        <activity android:name=".activities.AnhadirEmpleadoActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RegistrarseActivity" />
         <activity android:name=".activities.LoginActivity">

@@ -7,10 +7,8 @@
     <string name="entrar">Entrar</string>
     <string name="olvidado_password">He olvidad mi contraseña</string>
     <string name="registrarse">Registrarse</string>
-    <string name="email">Email</string>
     <string name="texto_introduce_email">Introduce tu email</string>
     <string name="repite_password">Repite contraseña</string>
-    <string name="fecha_nacimiento">Fecha nacimiento</string>
     <string name="dd_mm_aaaa">dd_mm_aaaa</string>
     <string name="peticion_sexo">Introduce sexo</string>
     <string name="sexo_f">F</string>
@@ -32,4 +30,18 @@
     <string name="anhadir_empelado">Añadir empleado</string>
     <string name="borrar_empelado">Borrar empleado</string>
     <string name="exito_log_in">Exito en el login</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="email">Email</string>
+    <string name="genero">Genero</string>
+    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+    <string name="departamento">Departamento</string>
+    <string name="lengua">Lengua</string>
+    <string name="fecha_contratación">Fecha contratación</string>
+    <string name="fecha_nacimiento">Fecha nacimiento</string>
+    <string name="nacionalidad">Nacionalidad</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="avatar">Avatar</string>
+
 </resources>

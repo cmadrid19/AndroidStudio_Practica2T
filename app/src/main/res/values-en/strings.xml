@@ -30,4 +30,14 @@
     <string name="texto_pais_residencia">" Enter country of residence"</string>
     <string name="usuario">User</string>
     <string name="dd_mm_aaaa">dd_mm_aaaa</string>
+    <string name="apellido">SurName</string>
+    <string name="departamento">Department</string>
+    <string name="direccion">Location</string>
+    <string name="exito_log_in">Succes on login</string>
+    <string name="fecha_contratación">Hiring date</string>
+    <string name="genero">Gender</string>
+    <string name="lengua">Language</string>
+    <string name="nacionalidad">Nacionality</string>
+    <string name="nombre">Name</string>
+    <string name="telefono">Phone</string>
 </resources>

@@ -27,7 +27,6 @@ public class AcercaDeActivity extends AppCompatActivity {
 
     private String leerFichero(){
         String info = "";
-
         try {
             //Abre un flujo desde la carpeta raw donde se encuentra un fichero.txt
             BufferedReader fichero = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.info)));
