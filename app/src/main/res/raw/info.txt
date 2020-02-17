@@ -1,0 +1,5 @@
+ Esta app ha sido creada por Maxim Macari y Gabriel Revilla Horcas en FPGS Desarrollo de Aplicaciones
+ Multiplataforma de IES Vilaverde Alto, durante el 2º Trimestre del módulo de "Programación multimedia y dispositivos móviles".
+ En Madrid a 13 de febrero de 2020.
+ Para ver el contenido de BBDD es de ayuda: https://inloop.github.io/sqlite-viewer/
+

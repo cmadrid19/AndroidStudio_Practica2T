@@ -4,37 +4,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQuery;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.controlempleados.activities.LoginActivity;
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.bean.User;
-
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
@@ -130,9 +109,8 @@ public class DataBase extends SQLiteOpenHelper {
         this.cerrarBaseDatos(database);
     }
 
-    public User checkLogin(String email, String pass) {
+    public User checkLogin(String name, String pass) {
         User user = null;
-
         int auxId = -1;
         String emailAux = "";
         String nombreAux = "";
@@ -141,24 +119,22 @@ public class DataBase extends SQLiteOpenHelper {
         String genderAux = "";
         String nationalityAux = "";
 
-        String consulta = "SELECT * FROM USERS WHERE email LIKE %" + email + "% AND WHERE pasword LIKE %" + pass + "%;";
+        String consulta = "SELECT * FROM USERS WHERE name LIKE "+"\""+ name +"\""+" AND pasword LIKE "+"\""+ pass +"\"";
 
         SQLiteDatabase basedatos = this.getReadableDatabase();
         Cursor cursor = basedatos.rawQuery(consulta, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-
-            auxId = cursor.getInt(0); //la posicion primera, el id
+            //auxId = cursor.getInt(0); //la posicion primera, el id
             emailAux = cursor.getString(1);
             nombreAux = cursor.getString(2); //la posicion segunda, el id
-            paswordAux = ""; //cursor.getString(3);
+            paswordAux = cursor.getString(3);
             birthDateAux = cursor.getString(4);
             genderAux = cursor.getString(5);
             nationalityAux = cursor.getString(6);
 
             user = new User(emailAux, nombreAux, paswordAux, birthDateAux, genderAux.charAt(0), nationalityAux);
-
             cursor.close();
         }
 
@@ -224,6 +200,62 @@ public class DataBase extends SQLiteOpenHelper {
         }
         this.cerrarBaseDatos(basedatos);
         return listaEmpleados;
+    }
+
+    public void SetTablaEmpleados() {
+        String ListaQueries = "";
+
+        List<Empleado> listaEmpleados = null;
+        Empleado empleado = null;
+
+        int id = -1;
+        String name = "";
+        String surname = "";
+        String email = "";
+        String gender = "";
+        int phone = -1;
+        String location = "";
+        String avatar = "";
+        String department = "";
+        String language = "";
+        String hiringDate = "";
+        String birthDate = "";
+        String nationality = "";
+
+        String consulta = "SELECT * FROM WORKERS_DB_NAME";
+
+        SQLiteDatabase basedatos = this.getReadableDatabase();
+        Cursor cursor = basedatos.rawQuery(consulta, null);
+
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
+            do {
+                id = cursor.getInt(0);
+                name = cursor.getString(1);
+                surname = cursor.getString(2);
+                email = cursor.getString(3);
+                gender = cursor.getString(4);
+                phone = cursor.getInt(5);
+                location = cursor.getString(6);
+                avatar = cursor.getString(7);
+                department = cursor.getString(8);
+                language = cursor.getString(9);
+                hiringDate = cursor.getString(10);
+                birthDate = cursor.getString(11);
+                nationality = cursor.getString(12);
+
+                empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
+                        department, language, hiringDate, birthDate, nationality);
+
+                listaEmpleados.add(empleado);
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        this.cerrarBaseDatos(basedatos);
+
     }
 
 }

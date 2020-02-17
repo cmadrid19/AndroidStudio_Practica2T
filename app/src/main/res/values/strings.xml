@@ -7,10 +7,8 @@
     <string name="entrar">Entrar</string>
     <string name="olvidado_password">He olvidad mi contraseña</string>
     <string name="registrarse">Registrarse</string>
-    <string name="email">Email</string>
     <string name="texto_introduce_email">Introduce tu email</string>
     <string name="repite_password">Repite contraseña</string>
-    <string name="fecha_nacimiento">Fecha nacimiento</string>
     <string name="dd_mm_aaaa">dd_mm_aaaa</string>
     <string name="peticion_sexo">Introduce sexo</string>
     <string name="sexo_f">F</string>
@@ -19,9 +17,9 @@
     <string name="pais">País</string>
     <string name="texto_pais_residencia">Introduce país de residencia</string>
     <string name="crear_cuenta">Crear cuenta</string>
-    <string name="COUNTRIES_NAMES_URL">https://api.printful.com/countries</string>
+    <string name="COUNTRIES_NAMES_URL" translatable="false">https://api.printful.com/countries</string>
     <string name="sin_conexion_internet">No hay conexión a internet</string>
-    <string name="ruta_paises">https://api.printful.com/countries</string>
+    <string name="ruta_paises" translatable="false">https://api.printful.com/countries</string>
     <string name="pais_no_seleccionado">Sin seleccionar</string>
     <string name="rellena_campos">Rellena todos los campos</string>
     <string name="contrasenha_no_coincide">las contraseñas no coinciden</string>
@@ -31,4 +29,19 @@
     <string name="salir">Salir</string>
     <string name="anhadir_empelado">Añadir empleado</string>
     <string name="borrar_empelado">Borrar empleado</string>
+    <string name="exito_log_in">Exito en el login</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="email">Email</string>
+    <string name="genero">Genero</string>
+    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+    <string name="departamento">Departamento</string>
+    <string name="lengua">Lengua</string>
+    <string name="fecha_contratación">Fecha contratación</string>
+    <string name="fecha_nacimiento">Fecha nacimiento</string>
+    <string name="nacionalidad">Nacionalidad</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="avatar">Avatar</string>
+
 </resources>

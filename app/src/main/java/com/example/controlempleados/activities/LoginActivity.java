@@ -1,5 +1,7 @@
 package com.example.controlempleados.activities;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,124 +11,88 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.controlempleados.R;
+import com.example.controlempleados.bean.User;
+import com.example.controlempleados.dao.DataBase;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     TextView usuario;
     TextView password;
-
+    DataBase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        db = new DataBase(this, "miBaseDatos", null, 1);
 
+        checkLoginGuardado();
 
-        verificaIntent();
         usuario = (EditText) findViewById(R.id.edittext_usuario);
-        password = (EditText) findViewById(R.id.edittext_password);
+        password = (EditText) findViewById(R.id.edittext_password_logn_in);
 
-        /*
-        password.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    //TODO
-                    //login(usuario);
-                }
-                return false;
-            }
-        });
-         */
-    }
-
-
-    public void verificaIntent() {
-        Intent intent = getIntent();
-        String clave = intent.getStringExtra("clave");
-        String email = intent.getStringExtra("email");
-        String pass = intent.getStringExtra("password");
-        if (clave == null) {
-            checkUsuarioFichero();
-        } else if (clave.equals("ko")) {
-            Toast.makeText(this, "El usuario o la contraseña no son válidos", Toast.LENGTH_SHORT).show();
-        } else if (clave.equals("ok")) {
-            anadirUsuarioPrefs(email, pass);
-            Toast.makeText(this, "Se ha iniciado sesión exitosamente", Toast.LENGTH_SHORT);
-            startActivity(new Intent(this, MainActivity.class));
-            this.finish();
-
-        }
     }
 
     //metodo al que llamamos cuando hacemos click en ENTRAR
     public void login(View view) {
-        String recoge_usuario;
-        String recoge_password;
+        String nombreUsuario;
+        String contrasenhaUsuario;
 
-        recoge_usuario = usuario.getText().toString();
-        recoge_password = password.getText().toString();
+        nombreUsuario = usuario.getText().toString();
+        contrasenhaUsuario = password.getText().toString();
 
-        Log.d(TAG, "la contraseña es " + recoge_usuario);
+        Log.d(TAG, "El usario es: " + nombreUsuario);
+        Log.d(TAG, "la contraseña es: " + nombreUsuario);
 
-        //de momento directamente entra en la actividad pero para hacer pruebas, despues hay que quitarlo.
-        //startActivity(new Intent(LoginActivity.this, PrincipalActivity.class));
-        //hacerLlamada(recoge_usuario, recoge_password);
+        if (!nombreUsuario.equals("") && !contrasenhaUsuario.equals("")) {
 
+            User u = db.checkLogin(nombreUsuario, contrasenhaUsuario);
+            if (u != null) {
+                //El usuario logeado existe en BBDD
+                Log.d(TAG, getResources().getString(R.string.exito_log_in) + " " + u.toString());
+                //Guardamos el Login para proximas ocaisones
+                anadirUsuarioPrefs(u.getName(), u.getPassword());
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+        }
     }
 
 
     /**
-     *Es el metodo al que llamamos cuando hacemos click en 'Registrarse'
-     * @param view
+     * La idea es una vez logeado, cuando salgas de la app y vuelvas a entrar que el loging se hagas desde las SharedPreferenes.
+     * Cuando quieras salir se liberaran el usuario y el pass de las SharedPreferences.
+     *
+     * @param name
+     * @param password
      */
-    public void crearCuentaNueva(View view) {
-        if(haveNetwork() == true){
-            Intent intent = new Intent(this, RegistrarseActivity.class);
-            startActivity(intent);
-        }else {
-            Toast.makeText(this, getResources().getString(R.string.sin_conexion_internet), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public boolean checkUsuarioFichero() {
-        SharedPreferences prefs;
-        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-        String contenidoUser = prefs.getString("email", "");
-        String contenidoPass = prefs.getString("password", "");
-        Log.d(TAG, "Se saca la contraseña" + contenidoPass);
-        Log.d(TAG, " El usuario leido del fichero es" + contenidoUser + " " + contenidoPass);
-
-        if (contenidoUser != "" && contenidoPass != "") {
-
-            //Lamada login, si existe una conicidencia en sql se entra
-            //ClienteHTTP.llamadaLogin(contenidoUser, contenidoPass, this);
-
-
-            Log.d(TAG, "Habia un usuario en fichero");
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void anadirUsuarioPrefs(String email, String password) {
+    public void anadirUsuarioPrefs(String name, String password) {
         SharedPreferences prefs;
         prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
-        edit.putString("email", email);
+        edit.putString("name", name);
         edit.putString("password", password);
-        Log.d(TAG, "Se guarda la contraseña:" + password);
         edit.commit();
     }
 
 
-    //es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
-    public void restablecerPassword(View view) {
+    public void checkLoginGuardado() {
+        SharedPreferences prefs;
+        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        String contenidoUser = prefs.getString("name", "");
+        String contenidoPass = prefs.getString("password", "");
+
+        if (contenidoUser != "" && contenidoPass != "") {
+            //Si hay Shared Preferences con nombre y contraseña
+            //Y ,además, si existe una conicidencia en BBDD --> Login directo
+            db.checkLogin(contenidoUser, contenidoPass);
+            Log.d(TAG, " El usuario leido del fichero es" + contenidoUser + " " + contenidoPass);
+
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
     }
 
     private boolean haveNetwork() {
@@ -141,9 +107,29 @@ public class LoginActivity extends AppCompatActivity {
             } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
                 // connected to mobile data
             }
-        }else{
+        } else {
             // NOT connected to the internet
         }
         return status;
+    }
+
+    /**
+     * Es el metodo al que llamamos cuando hacemos click en 'Registrarse'
+     *
+     * @param view
+     */
+    public void crearCuentaNueva(View view) {
+        if (haveNetwork() == true) {
+            Intent intent = new Intent(this, RegistrarseActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.sin_conexion_internet), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //TODO falta
+    //Es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
+    public void restablecerPassword(View view) {
+
     }
 }
