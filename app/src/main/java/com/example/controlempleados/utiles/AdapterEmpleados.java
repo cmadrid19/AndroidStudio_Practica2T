@@ -37,7 +37,7 @@ public class AdapterEmpleados extends RecyclerView.Adapter<EmpleadoViewHolder> {
 
     @Override
     public int getItemCount() {
-        return datos.size();
+            return datos.size();
     }
 
     public AdapterEmpleados(ArrayList<Empleado> emlpeados)

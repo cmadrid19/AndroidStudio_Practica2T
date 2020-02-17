@@ -57,9 +57,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrarse);
         db = new DataBaseUsers(this, "miBaseDatos", null, 1);
 
-
-        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-
         radioSexo = findViewById(R.id.sexo_grupo);
         ediTxRecogeUsuario = (EditText) findViewById(R.id.edittext_usuario);
         editTextPassword = (EditText) findViewById(R.id.edittext_password_sign_in);

@@ -3,6 +3,7 @@ package com.example.controlempleados.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.dao.DataBaseWorkers;
@@ -41,10 +43,14 @@ public class MainActivity extends AppCompatActivity {
         * 3.
         * */
 
-        recView = (RecyclerView) findViewById(R.id.lista_empleados);
-
         DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
 
+        /*
+        recView = (RecyclerView) findViewById(R.id.lista_empleados);
+        recView.setLayoutManager(new LinearLayoutManager(this));
+        adaptador = new AdapterEmpleados(datos);
+        recView.setAdapter(adaptador);
+*/
 
     }
 

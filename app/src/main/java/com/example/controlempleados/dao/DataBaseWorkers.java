@@ -30,11 +30,8 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
     public DataBaseWorkers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-<<<<<<< HEAD
-
         this.context = context;
-=======
->>>>>>> 14999582501856493da060a4203f63f25e4da8e0
+
     }
 
     @Override
@@ -72,8 +69,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + ")";
 
         db.execSQL(SQL_TABLE_WORKERS);
-
-
     }
 
     @Override
@@ -195,20 +190,21 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         this.cerrarBaseDatos(basedatos);
     }
 
-<<<<<<< HEAD
-    private void leerRaw(SQLiteDatabase db){
+
+    private void leerRaw(SQLiteDatabase db) {
         Log.d("TEST", "ENTRANDO EN LEER ARCHIVO");
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.workers)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.context.getResources().openRawResource(R.raw.workers)));
 
             String line = "";
             String query = "";
 
-            while((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
                 query += line;
 
                 Log.d("TEST", line);
+                insertarEmploeado(line);
             }
 
             db.execSQL(query);
@@ -218,8 +214,38 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
-=======
-    private void
->>>>>>> 14999582501856493da060a4203f63f25e4da8e0
+
+    /*
+    private void insertarWoker(Empleado e){
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        SQLiteStatement query = database.compileStatement("INSERT INTO USERS (id,name, sur_name,email, gender, phone, location, avatar, department" +
+                ",language, hiring_date, birth_date, nationality) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)");
+        query.bindString(1, String.valueOf(e.getId()));
+        query.bindString(2, e.getFirstName());
+        query.bindString(3, e.getLast_name());
+        query.bindString(4, e.getEmail());
+        query.bindString(5, e.getGender());
+        query.bindString(6, String.valueOf(e.getPhone()));
+        query.bindString(7, e.getLocation());
+        query.bindString(8, e.getAvatar());
+        query.bindString(9, e.getDepartment());
+        query.bindString(10, e.getLanguage());
+        query.bindString(11, e.getHiringDate());
+        query.bindString(12, e.getBirthDate());
+        query.bindString(13, e.getNationlity());
+
+        query.executeInsert();
+
+        this.cerrarBaseDatos(database);
+    }
+     */
+
+    private void insertarEmploeado(String insert) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL(insert);
+        this.cerrarBaseDatos(database);
+    }
+
 
 }

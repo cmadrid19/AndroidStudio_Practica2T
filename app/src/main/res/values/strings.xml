@@ -43,5 +43,6 @@
     <string name="nacionalidad">Nacionalidad</string>
     <string name="aceptar">Aceptar</string>
     <string name="avatar">Avatar</string>
+    <string name="user_pass_incorrectos">Usuario y/o contraseña incorrectos</string>
 
 </resources>

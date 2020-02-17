@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                 //Guardamos el Login para proximas ocaisones
                 anadirUsuarioPrefs(u.getName(), u.getPassword());
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }else{
+                Toast.makeText(this, getResources().getString(R.string.user_pass_incorrectos), Toast.LENGTH_SHORT).show();
             }
         }
     }
