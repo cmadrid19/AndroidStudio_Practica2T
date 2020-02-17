@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.User;
-import com.example.controlempleados.dao.DataBase;
+import com.example.controlempleados.dao.DataBaseUsers;
 import com.example.controlempleados.utiles.DatePickerFragment;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
 public class RegistrarseActivity extends AppCompatActivity {
 
     private static final String TAG = "CrearCuentaNuevaActivit";
-    private static DataBase db = null;
+    private static DataBaseUsers db = null;
 
     EditText ediTxRecogeUsuario;
     EditText editTextPassword;
@@ -55,7 +55,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
-        db = new DataBase(this, "miBaseDatos", null, 1);
+        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
 
 
         SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);

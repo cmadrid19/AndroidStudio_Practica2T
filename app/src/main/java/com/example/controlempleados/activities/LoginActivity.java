@@ -16,19 +16,19 @@ import android.widget.Toast;
 
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.User;
-import com.example.controlempleados.dao.DataBase;
+import com.example.controlempleados.dao.DataBaseUsers;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     TextView usuario;
     TextView password;
-    DataBase db;
+    DataBaseUsers db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        db = new DataBase(this, "miBaseDatos", null, 1);
+        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
 
         checkLoginGuardado();
 

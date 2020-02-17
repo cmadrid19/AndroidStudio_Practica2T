@@ -4,18 +4,39 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="?android:attr/selectableItemBackground" >
+    android:background="?android:attr/selectableItemBackground">
 
-    <TextView android:id="@+id/LblTitulo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="70"
+            android:weightSum="100">
+            <TextView android:id="@+id/txtViewNombreEmpleado"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_weight="60"/>
+            <TextView android:id="@+id/txtViewDepartamentoEmpleado"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_weight="40"/>
+        </LinearLayout>
+        <TextView android:id="@+id/txtViewIdEmpleado"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:layout_weight="30"/>
+    </LinearLayout>
 
-    <TextView android:id="@+id/LblAutor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="12sp" />
 
 </LinearLayout>

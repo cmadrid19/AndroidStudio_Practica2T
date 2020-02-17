@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.controlempleados.R;
 
 public class AnhadirEmpleadoActivity extends AppCompatActivity {
