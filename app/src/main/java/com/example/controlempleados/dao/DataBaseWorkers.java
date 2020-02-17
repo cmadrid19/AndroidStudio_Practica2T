@@ -16,11 +16,19 @@ import java.util.List;
 
 public class DataBaseWorkers extends SQLiteOpenHelper {
 
+
+    private static String DB_NAME = "prueba.db";
+    private static String DB_PATH = "";
     public static final int DATABASE_VERSION = 1;
 
 
     public DataBaseWorkers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        if (android.os.Build.VERSION.SDK_INT >= 17)
+            DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
+        else
+            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        this.getReadableDatabase();
     }
 
     @Override

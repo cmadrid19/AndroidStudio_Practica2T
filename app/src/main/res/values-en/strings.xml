@@ -8,7 +8,7 @@
     <string name="crear_cuenta">Create account</string>
     <string name="email">Email</string>
     <string name="email_formato_incorrecto">The email format must be correct</string>
-    <string name="entrar">" Get in"</string>
+    <string name="entrar">"Log in"</string>
     <string name="error_mensage">Failed attempt while trying to load countries</string>
     <string name="fecha_nacimiento">Birth date</string>
     <string name="olvidado_password">"I forgot my password "</string>
@@ -16,7 +16,7 @@
     <string name="pais_no_seleccionado">Not selected</string>
     <string name="password">Password</string>
     <string name="peticion_sexo">Enter sex</string>
-    <string name="registrarse">"Sign in "</string>
+    <string name="registrarse">"Sing in"</string>
     <string name="rellena_campos">"Fill in all the fields "</string>
     <string name="repite_password">"Repeat password "</string>
     <string name="salir">Exit</string>
