@@ -24,11 +24,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
     public DataBaseWorkers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
-            DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        else
-            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        this.getReadableDatabase();
     }
 
     @Override
@@ -67,6 +62,8 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + ")";
 
         db.execSQL(SQL_TABLE_WORKERS);
+
+
     }
 
     @Override
@@ -186,7 +183,8 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
             cursor.close();
         }
         this.cerrarBaseDatos(basedatos);
-
     }
+
+    private void
 
 }
