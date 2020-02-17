@@ -116,11 +116,6 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void insertarUser(User user) {
         SQLiteDatabase database = this.getWritableDatabase();
-<<<<<<< HEAD
-        database.execSQL("INSERT INTO USERS_DB_NAME (email,name, pasword, birth_date, gender, nationality) " +
-                "VALUES ( " +user.getEmail()+","+user.getName() +","+user.getPassword() +","
-                +user.getBirthDate()+ ","+user.getGender() + "," +user.getNationality()+")");
-=======
 
         SQLiteStatement query = database.compileStatement("INSERT INTO USERS (email,name, pasword, birth_date, gender, nationality) VALUES (?, ?, ?, ?, ?, ?)");
         query.bindString(1, user.getEmail());
@@ -132,7 +127,6 @@ public class DataBase extends SQLiteOpenHelper {
 
         query.executeInsert();
 
->>>>>>> 0ae4d7b99808c6e84cf5e8f989f461a75eb56ca1
         this.cerrarBaseDatos(database);
     }
 
