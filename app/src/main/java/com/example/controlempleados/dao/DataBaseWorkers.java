@@ -5,35 +5,37 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.bean.User;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseWorkers extends SQLiteOpenHelper {
-
-
-    private static String DB_NAME = "prueba.db";
-    private static String DB_PATH = "";
     public static final int DATABASE_VERSION = 1;
+    private Context context;
 
 
     public DataBaseWorkers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
-            DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        else
-            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        this.getReadableDatabase();
+
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         final String WORKERS_DB_NAME = "WORKERS";
         final String WORKER_ID = "id";
         final String WORKER_NAME = "name";
@@ -72,7 +74,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Borrar tabla si ya existe
-
+        leerRaw(db);
     }
 
     private void cerrarBaseDatos(SQLiteDatabase database) {
@@ -153,7 +155,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         String birthDate = "";
         String nationality = "";
 
-        String consulta = "SELECT * FROM WORKERS_DB_NAME";
+        String consulta = "SELECT * FROM WORKERS";
 
         SQLiteDatabase basedatos = this.getReadableDatabase();
         Cursor cursor = basedatos.rawQuery(consulta, null);
@@ -187,6 +189,29 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         }
         this.cerrarBaseDatos(basedatos);
 
+    }
+
+    private void leerRaw(SQLiteDatabase db){
+        Log.d("TEST", "ENTRANDO EN LEER ARCHIVO");
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.workers)));
+
+            String line = "";
+            String query = "";
+
+            while((line = br.readLine()) != null){
+                query += line;
+
+                Log.d("TEST", line);
+            }
+
+            db.execSQL(query);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

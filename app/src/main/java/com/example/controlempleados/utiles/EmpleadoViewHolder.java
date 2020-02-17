@@ -15,8 +15,6 @@ public class EmpleadoViewHolder extends RecyclerView.ViewHolder {
 
     public EmpleadoViewHolder(View itemView) {
         super(itemView);
-        text_view_autor = (TextView)itemView.findViewById(R.id.LblAutor);
-        text_view_titulo = (TextView)itemView.findViewById(R.id.LblTitulo);
     }
 
 

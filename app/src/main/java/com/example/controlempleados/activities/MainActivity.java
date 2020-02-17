@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
+import com.example.controlempleados.dao.DataBaseWorkers;
 import com.example.controlempleados.utiles.AdapterEmpleados;
 import java.util.ArrayList;
 
@@ -42,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
 
-        recView.
+        DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
+
+
     }
 
     //ESTE MÉTODO SE INVOCA AL TOCAR UNA OPCIÓN DEL MENÚ
