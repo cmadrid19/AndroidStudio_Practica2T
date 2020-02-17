@@ -1,3 +1,7 @@
+CREATE TABLE WORKERS(id INT PRIMARY KEY, first_name VARCHAR, last_name VARCHAR, email VARCHAR, 
+gender VARCHAR, phone VARCHAR, location VARCHAR, avatar VARCHAR, department VARCHAR, language VARCHAR, 
+hiring_date DATE, birth_date DATE)
+
 insert into WORKERS (id, first_name, last_name, email, gender, phone, location, avatar, department, language, hiring_date, birth_date) values (1, 'Natale', 'Lagneaux', 'nlagneaux0@accuweather.com', 'Male', '437-271-7140', '870 Messerschmidt Parkway', 'https://robohash.org/totamvoluptatemvoluptate.bmp?size=50x50&set=set1', 'Accounting', 'New Zealand Sign Language', '2/2/2016', '10/18/1984');
 insert into WORKERS (id, first_name, last_name, email, gender, phone, location, avatar, department, language, hiring_date, birth_date) values (2, 'Curtis', 'Baszkiewicz', 'cbaszkiewicz1@ucsd.edu', 'Male', '972-285-5080', '7 Eliot Street', 'https://robohash.org/enimnumquameum.bmp?size=50x50&set=set1', 'Legal', 'Italian', '9/1/2010', '11/23/1998');
 insert into WORKERS (id, first_name, last_name, email, gender, phone, location, avatar, department, language, hiring_date, birth_date) values (3, 'Felipa', 'Mottershead', 'fmottershead2@examiner.com', 'Female', '552-211-4791', '90 Mallory Place', 'https://robohash.org/quocorporisoccaecati.png?size=50x50&set=set1', 'Accounting', 'West Frisian', '5/14/2011', '1/19/2000');

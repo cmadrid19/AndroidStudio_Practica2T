@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
 
-
+        recView.
     }
 
     //ESTE MÉTODO SE INVOCA AL TOCAR UNA OPCIÓN DEL MENÚ
