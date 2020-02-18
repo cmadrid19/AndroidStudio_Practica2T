@@ -172,6 +172,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             db.insertarUser(user);
 
             Intent intent = (new Intent(this, LoginActivity.class));
+            this.finish();
             startActivity(intent);
         } else {
             Toast.makeText(this, getResources().getString(R.string.rellena_campos), Toast.LENGTH_SHORT).show();

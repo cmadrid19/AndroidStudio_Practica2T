@@ -25,6 +25,7 @@ import java.util.List;
 
 public class DataBaseWorkers extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
+    final String WORKERS_DB_NAME = "WORKERS";
     private Context context;
 
 
@@ -36,10 +37,9 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String WORKERS_DB_NAME = "WORKERS";
         final String WORKER_ID = "id";
-        final String WORKER_NAME = "name";
-        final String WORKER_SURNAME = "sur_name";
+        final String WORKER_NAME = "first_name";
+        final String WORKER_SURNAME = "last_name";
         final String WORKER_EMAIL = "email";
         final String WORKER_GENDER = "gender";
         final String WORKER_PHONE = "phone";
@@ -49,11 +49,11 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         final String WORKER_LANGUAGE = "language";
         final String WORKER_HIRING_DATE = "hiring_date";
         final String WORKER_BIRTH_DATE = "birth_date";
-        final String WORKER_NATIONALITY = "nationality";
+
 
         final String SQL_TABLE_WORKERS = " CREATE TABLE " + WORKERS_DB_NAME
                 + " ( "
-                + WORKER_ID + " INTEGER PRIMARY KEY, "
+                + WORKER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + WORKER_NAME + " TEXT, "
                 + WORKER_SURNAME + " TEXT,"
                 + WORKER_EMAIL + " TEXT,"
@@ -64,8 +64,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + WORKER_DEPARTMENT + " TEXT,"
                 + WORKER_LANGUAGE + " TEXT,"
                 + WORKER_HIRING_DATE + " TEXT,"
-                + WORKER_BIRTH_DATE + " TEXT,"
-                + WORKER_NATIONALITY + " TEXT"
+                + WORKER_BIRTH_DATE + " TEXT"
                 + ")";
 
         db.execSQL(SQL_TABLE_WORKERS);
@@ -74,15 +73,14 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Borrar tabla si ya existe
-        leerRaw(db);
     }
 
     private void cerrarBaseDatos(SQLiteDatabase database) {
         database.close();
     }
 
-    public List<Empleado> getEmpleados() {
-        List<Empleado> listaEmpleados = null;
+    public  ArrayList<Empleado> getEmpleados() {
+        ArrayList<Empleado> arrListaEmpleados = null;
         Empleado empleado = null;
 
         int id = -1;
@@ -97,9 +95,8 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         String language = "";
         String hiringDate = "";
         String birthDate = "";
-        String nationality = "";
 
-        String consulta = "SELECT * FROM WORKERS_DB_NAME";
+        String consulta = "SELECT * FROM "+ WORKERS_DB_NAME;
 
         SQLiteDatabase basedatos = this.getReadableDatabase();
         Cursor cursor = basedatos.rawQuery(consulta, null);
@@ -107,7 +104,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-            listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
+            arrListaEmpleados = new ArrayList<Empleado>(cursor.getCount());
             do {
                 id = cursor.getInt(0);
                 name = cursor.getString(1);
@@ -121,18 +118,18 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 language = cursor.getString(9);
                 hiringDate = cursor.getString(10);
                 birthDate = cursor.getString(11);
-                nationality = cursor.getString(12);
+
 
                 empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
-                        department, language, hiringDate, birthDate, nationality);
+                        department, language, hiringDate, birthDate);
 
-                listaEmpleados.add(empleado);
+                arrListaEmpleados.add(empleado);
 
             } while (cursor.moveToNext());
             cursor.close();
         }
         this.cerrarBaseDatos(basedatos);
-        return listaEmpleados;
+        return arrListaEmpleados;
     }
 
     public void SetTablaEmpleados() {
@@ -177,10 +174,10 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 language = cursor.getString(9);
                 hiringDate = cursor.getString(10);
                 birthDate = cursor.getString(11);
-                nationality = cursor.getString(12);
+
 
                 empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
-                        department, language, hiringDate, birthDate, nationality);
+                        department, language, hiringDate, birthDate);
 
                 listaEmpleados.add(empleado);
 
@@ -204,7 +201,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 query += line;
 
                 Log.d("TEST", line);
-                insertarEmploeado(line);
+
             }
 
             db.execSQL(query);
@@ -215,12 +212,12 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         }
     }
 
-    /*
+
     private void insertarWoker(Empleado e){
         SQLiteDatabase database = this.getWritableDatabase();
 
         SQLiteStatement query = database.compileStatement("INSERT INTO USERS (id,name, sur_name,email, gender, phone, location, avatar, department" +
-                ",language, hiring_date, birth_date, nationality) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)");
+                ",language, hiring_date, birth_date) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)");
         query.bindString(1, String.valueOf(e.getId()));
         query.bindString(2, e.getFirstName());
         query.bindString(3, e.getLast_name());
@@ -233,15 +230,14 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         query.bindString(10, e.getLanguage());
         query.bindString(11, e.getHiringDate());
         query.bindString(12, e.getBirthDate());
-        query.bindString(13, e.getNationlity());
 
         query.executeInsert();
 
         this.cerrarBaseDatos(database);
     }
-     */
 
-    private void insertarEmploeado(String insert) {
+
+    public void insertarEmploeado(String insert) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.execSQL(insert);
         this.cerrarBaseDatos(database);
