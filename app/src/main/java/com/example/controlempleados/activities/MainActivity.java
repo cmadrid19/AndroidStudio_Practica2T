@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
            - Modelo Usuario Registrarse y entrar.
         * 1. Recycler view: handleview, modelo,
         * 2. BBDD
+
+        TODO hcer un estilo para meter bordes a las filas del recycler
         * */
 
         DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
