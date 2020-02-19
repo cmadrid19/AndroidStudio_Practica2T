@@ -3,6 +3,7 @@ package com.example.controlempleados.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
@@ -63,9 +66,28 @@ public class MainActivity extends AppCompatActivity {
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
         recView.setLayoutManager(new LinearLayoutManager(this));
         adaptador = new AdapterEmpleados(datos, this);
+
+        //Animación
+        final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(this, R.anim.cascada);
+        recView.setLayoutAnimation(controller);
+
+        //cargar datos
         recView.setAdapter(adaptador);
 
+        //Slide raws - Borrar empleado
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
 
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                datos.remove(viewHolder.getAdapterPosition());
+                adaptador.notifyDataSetChanged();
+            }
+        };
+        new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recView);
     }
 
     //ESTE MÉTODO SE INVOCA AL TOCAR UNA OPCIÓN DEL MENÚ
@@ -101,5 +123,7 @@ public class MainActivity extends AppCompatActivity {
         mi.inflate(R.menu.menu_opciones, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
 
 }
