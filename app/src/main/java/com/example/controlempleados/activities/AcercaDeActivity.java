@@ -3,6 +3,7 @@ package com.example.controlempleados.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,5 +43,8 @@ public class AcercaDeActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return info;
+    }
+
+    public void escogerFechaNacimiento(View view) {
     }
 }

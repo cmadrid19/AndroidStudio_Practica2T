@@ -235,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:textSize="18sp"
-            android:onClick="escogerFechaEmpleado"
+            android:onClick="escogerFechaContratación"
             android:focusable="false"
             android:gravity="center"
             android:hint="@string/dd_mm_aaaa"
@@ -261,12 +261,12 @@
             android:textSize="18sp"></TextView>
 
         <EditText
-            android:id="@+id/edTxFechanacimiento"
+            android:id="@+id/edTxFechaNacimiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:textSize="18sp"
-            android:onClick="escogerFecha"
+            android:onClick="escogerFechaNacimiento"
             android:focusable="false"
             android:gravity="center"
             android:hint="@string/dd_mm_aaaa"
@@ -291,15 +291,13 @@
             android:text="@string/nacionalidad"
             android:textSize="18sp"></TextView>
 
-
-        <!--TODO cambiar por spinner???-->
-        <EditText
-            android:id="@+id/edTxnacionalidad"
+        <Spinner
+            android:id="@+id/spinnerNacionalidad"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="65"
-            android:hint="@string/nacionalidad"
-            android:textSize="18sp"></EditText>
+            android:textSize="18sp">
+        </Spinner>
     </LinearLayout>
 
     <Button

@@ -47,5 +47,6 @@
     <string name="id">Id</string>
     <string name="fecha_no_escogida">Debes escoger una fecha</string>
     <string name="genero_no_escogido">Debes elegir un genero</string>
+    <string name="usuario_no_introducido">Usuario no introducido</string>
 
 </resources>

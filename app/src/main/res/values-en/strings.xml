@@ -46,4 +46,5 @@
     <string name="genero_no_escogido">You must choose a gender</string>
     <string name="id">Id</string>
     <string name="user_pass_incorrectos">User or password incorrect</string>
+    <string name="usuario_no_introducido">User not entered</string>
 </resources>
