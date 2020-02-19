@@ -1,22 +1,19 @@
 package com.example.controlempleados.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.User;
 import com.example.controlempleados.dao.DataBaseUsers;
+import com.example.controlempleados.utiles.InternetStatus;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -97,23 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private boolean haveNetwork() {
-        boolean status = false;
-        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        // connected to the internet
-        if (activeNetwork != null) {
-            status = true;
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                // connected to wifi
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                // connected to mobile data
-            }
-        } else {
-            // NOT connected to the internet
-        }
-        return status;
-    }
+
 
     /**
      * Es el metodo al que llamamos cuando hacemos click en 'Registrarse'
@@ -121,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param view
      */
     public void crearCuentaNueva(View view) {
-        if (haveNetwork() == true) {
+        if (InternetStatus.haveNetwork(this) == true) {
             Intent intent = new Intent(this, RegistrarseActivity.class);
             startActivity(intent);
         } else {

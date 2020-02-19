@@ -30,4 +30,6 @@ public class EmpleadoViewHolder extends RecyclerView.ViewHolder {
         tvEmailEmpleado.setText(e.getEmail());
         tvIdEmpleado.setText(String.valueOf(e.getId()));
     }
+
+
 }

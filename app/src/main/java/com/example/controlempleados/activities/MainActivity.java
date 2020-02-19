@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
         recView.setLayoutManager(new LinearLayoutManager(this));
-        adaptador = new AdapterEmpleados(datos);
+        adaptador = new AdapterEmpleados(datos, this);
         recView.setAdapter(adaptador);
 
 
@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_anhadir_empleado:
                 Intent intent = new Intent(this, AnhadirEmpleadoActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.menu_borrar_empleado:
-                //TODO puede que sea mejor opción hacer un slide sobre una empleado
                 break;
             case R.id.menu_acerca_de:
                 Intent intent1 = new Intent(this, AcercaDeActivity.class);

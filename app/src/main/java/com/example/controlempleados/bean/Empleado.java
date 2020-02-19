@@ -1,11 +1,9 @@
 package com.example.controlempleados.bean;
-
-import android.net.Uri;
-import android.provider.ContactsContract;
-
 import androidx.annotation.NonNull;
 
-public class Empleado {
+import java.io.Serializable;
+
+public class Empleado implements Serializable {
     private int id;
     private String firstName;
     private String last_name;
