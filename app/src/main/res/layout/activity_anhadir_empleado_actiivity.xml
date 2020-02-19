@@ -235,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:textSize="18sp"
-            android:onClick="escogerFecha"
+            android:onClick="escogerFechaEmpleado"
             android:focusable="false"
             android:gravity="center"
             android:hint="@string/dd_mm_aaaa"
