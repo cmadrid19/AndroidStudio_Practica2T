@@ -40,4 +40,10 @@
     <string name="nacionalidad">Nacionality</string>
     <string name="nombre">Name</string>
     <string name="telefono">Phone</string>
+    <string name="aceptar">Accept</string>
+    <string name="avatar">Avatar</string>
+    <string name="fecha_no_escogida">You must choose a date</string>
+    <string name="genero_no_escogido">You must choose a gender</string>
+    <string name="id">Id</string>
+    <string name="user_pass_incorrectos">User or password incorrect</string>
 </resources>

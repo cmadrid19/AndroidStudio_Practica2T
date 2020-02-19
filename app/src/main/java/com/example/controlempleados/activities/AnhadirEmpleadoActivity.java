@@ -17,7 +17,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
     }
 
 
-    public void escogerFecha(View view) {
+    public void escogerFechaEmpleado(View view) {
     }
 
     public void introducirEmpleado(View view) {
