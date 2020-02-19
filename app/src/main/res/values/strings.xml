@@ -45,5 +45,7 @@
     <string name="avatar">Avatar</string>
     <string name="user_pass_incorrectos">Usuario y/o contraseña incorrectos</string>
     <string name="id">Id</string>
+    <string name="fecha_no_escogida">Debes escoger una fecha</string>
+    <string name="genero_no_escogido">Debes elegir un genero</string>
 
 </resources>
