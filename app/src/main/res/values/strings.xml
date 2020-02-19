@@ -13,7 +13,7 @@
     <string name="peticion_sexo">Introduce sexo</string>
     <string name="sexo_f">F</string>
     <string name="sexo_m">M</string>
-    <string name="error_mensage">Fallo al intentar cargar los paises...</string>
+    <string name="error_mensage">Fallo al intentar cargar datos de internet...</string>
     <string name="pais">País</string>
     <string name="texto_pais_residencia">Introduce país de residencia</string>
     <string name="crear_cuenta">Crear cuenta</string>
@@ -43,5 +43,9 @@
     <string name="nacionalidad">Nacionalidad</string>
     <string name="aceptar">Aceptar</string>
     <string name="avatar">Avatar</string>
+    <string name="user_pass_incorrectos">Usuario y/o contraseña incorrectos</string>
+    <string name="id">Id</string>
+    <string name="fecha_no_escogida">Debes escoger una fecha</string>
+    <string name="genero_no_escogido">Debes elegir un genero</string>
 
 </resources>

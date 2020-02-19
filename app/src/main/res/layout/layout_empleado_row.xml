@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:layout_height="100dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
         android:weightSum="100">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
             android:orientation="vertical"
-            android:layout_weight="70"
             android:weightSum="100">
-            <TextView android:id="@+id/txtViewNombreEmpleado"
+
+            <TextView
+                android:id="@+id/txtViewNombreEmpleado"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_weight="60"/>
-            <TextView android:id="@+id/txtViewDepartamentoEmpleado"
+                android:layout_weight="50"
+                android:gravity="bottom"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewEmailEmpleado"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_weight="40"/>
+                android:layout_weight="25"
+                android:gravity="top|bottom"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtViewDepartamentoEmpleado"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="top|bottom"
+                android:textSize="15sp" />
         </LinearLayout>
-        <TextView android:id="@+id/txtViewIdEmpleado"
+
+        <TextView
+            android:id="@+id/txtViewIdEmpleado"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:layout_weight="30"/>
+            android:layout_weight="25"
+            android:maxLines="1"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="normal" />
     </LinearLayout>
 
 

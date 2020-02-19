@@ -1,11 +1,9 @@
 package com.example.controlempleados.bean;
-
-import android.net.Uri;
-import android.provider.ContactsContract;
-
 import androidx.annotation.NonNull;
 
-public class Empleado {
+import java.io.Serializable;
+
+public class Empleado implements Serializable {
     private int id;
     private String firstName;
     private String last_name;
@@ -18,11 +16,11 @@ public class Empleado {
     private String language;
     private String hiringDate;
     private String birthDate;
-    private String nationlity;
+
 
     public Empleado(int id, String firstName, String last_name, String email, String gender,
                     int phone, String location, String avatar, String department, String language,
-                    String hiringDate, String birthDate, String nationlity) {
+                    String hiringDate, String birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.last_name = last_name;
@@ -35,7 +33,7 @@ public class Empleado {
         this.language = language;
         this.hiringDate = hiringDate;
         this.birthDate = birthDate;
-        this.nationlity = nationlity;
+
     }
 
     public int getId() {
@@ -130,13 +128,6 @@ public class Empleado {
         this.avatar = avatar;
     }
 
-    public String getNationlity() {
-        return nationlity;
-    }
-
-    public void setNationlity(String nationlity) {
-        this.nationlity = nationlity;
-    }
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
@@ -158,7 +149,6 @@ public class Empleado {
                 ", language='" + language + '\'' +
                 ", hiringDate='" + hiringDate + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", nationlity='" + nationlity + '\'' +
                 '}';
     }
 }

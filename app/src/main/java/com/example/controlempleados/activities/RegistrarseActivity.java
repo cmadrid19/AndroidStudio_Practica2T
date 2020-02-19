@@ -51,14 +51,13 @@ public class RegistrarseActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList paises;
 
+    private String error = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
         db = new DataBaseUsers(this, "miBaseDatos", null, 1);
-
-
-        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
         radioSexo = findViewById(R.id.sexo_grupo);
         ediTxRecogeUsuario = (EditText) findViewById(R.id.edittext_usuario);
@@ -103,6 +102,8 @@ public class RegistrarseActivity extends AppCompatActivity {
         String fecha = ediTxPlannedDatePicker.getText().toString();
         if (!fecha.matches("")){
             fechaEscogida = true;
+        }else{
+            error = getResources().getString(R.string.fecha_no_escogida);
         }
         return fechaEscogida;
     }
@@ -112,6 +113,8 @@ public class RegistrarseActivity extends AppCompatActivity {
         int selectedId = radioSexo.getCheckedRadioButtonId();
         if (selectedId != -1) {
             elegido = true;
+        }else{
+            error = getResources().getString(R.string.genero_no_escogido);
         }
         return elegido;
     }
@@ -120,7 +123,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         Boolean paisSeleccionado = false;
         String text = spinner.getSelectedItem().toString();
         if (text.equals(this.getResources().getString(R.string.pais_no_seleccionado))){
-            //Pais no seleccionado, lanzar toast
+            error = getResources().getString(R.string.pais_no_seleccionado);
         }{
             paisSeleccionado = true;
             Log.d(TAG, "El país seleccionado es: "+text);
@@ -130,10 +133,16 @@ public class RegistrarseActivity extends AppCompatActivity {
 
 
     private boolean validarEmail(String email) {
+        Boolean emailCheck = false;
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        if (matcher.matches()){
+            emailCheck = true;
+        }else{
+            error = getResources().getString(R.string.email_formato_incorrecto);
+        }
+        return emailCheck;
     }
 
     public boolean comprobarPassword() {
@@ -141,7 +150,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         if (editTextPassword.getText().toString().equals(editTextRepeatPassword.getText().toString())){
             correcta = true;
         } else {
-            Toast.makeText(this, getResources().getString(R.string.contrasenha_no_coincide), Toast.LENGTH_SHORT).show();
+            error = getResources().getString(R.string.contrasenha_no_coincide);
         }
         return correcta;
     }
@@ -175,9 +184,10 @@ public class RegistrarseActivity extends AppCompatActivity {
             db.insertarUser(user);
 
             Intent intent = (new Intent(this, LoginActivity.class));
+            this.finish();
             startActivity(intent);
         } else {
-            Toast.makeText(this, getResources().getString(R.string.rellena_campos), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         }
     }
 

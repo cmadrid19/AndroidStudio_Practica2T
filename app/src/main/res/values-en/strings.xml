@@ -9,7 +9,7 @@
     <string name="email">Email</string>
     <string name="email_formato_incorrecto">The email format must be correct</string>
     <string name="entrar">"Log in"</string>
-    <string name="error_mensage">Failed attempt while trying to load countries</string>
+    <string name="error_mensage">Failed attempt while trying to load data form internet</string>
     <string name="fecha_nacimiento">Birth date</string>
     <string name="olvidado_password">"I forgot my password "</string>
     <string name="pais">Country</string>
