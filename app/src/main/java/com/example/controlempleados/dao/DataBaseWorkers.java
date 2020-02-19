@@ -30,11 +30,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
     public DataBaseWorkers(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-<<<<<<< HEAD
-
-        this.context = context;
-=======
->>>>>>> 14999582501856493da060a4203f63f25e4da8e0
     }
 
     @Override
@@ -195,7 +190,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         this.cerrarBaseDatos(basedatos);
     }
 
-<<<<<<< HEAD
     private void leerRaw(SQLiteDatabase db){
         Log.d("TEST", "ENTRANDO EN LEER ARCHIVO");
 
@@ -218,8 +212,5 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
-=======
-    private void
->>>>>>> 14999582501856493da060a4203f63f25e4da8e0
 
 }
