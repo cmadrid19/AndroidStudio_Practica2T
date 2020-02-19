@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -40,7 +41,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         super.onOpen(db);
 
         this.db = db;
-        this.importarEmpleados(this.db);
     }
 
     @Override
@@ -76,6 +76,8 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + ")";
 
         db.execSQL(SQL_TABLE_WORKERS);
+
+        this.importarEmpleados(this.db);
     }
 
     @Override
@@ -196,22 +198,19 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
     }
 
     private void importarEmpleados(SQLiteDatabase db){
-        Log.d("TEST", "ENTRANDO EN LEER ARCHIVO");
-
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(this.context.getResources().openRawResource(R.raw.workers)));
 
             String line = "";
             String query = "";
+            int count = 0;
 
             while ((line = br.readLine()) != null) {
-                query += line;
-
-                Log.d("TEST", line);
-
+                db.execSQL(line);
+                count++;
             }
 
-            db.execSQL(query);
+            Toast.makeText(context, "Insertados: " + count, Toast.LENGTH_LONG);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
