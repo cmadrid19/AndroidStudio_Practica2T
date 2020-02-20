@@ -158,6 +158,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         return correcto;
     }
 
+
     private Boolean validarNombreEmpleado() {
         Boolean rellenado = false;
 
