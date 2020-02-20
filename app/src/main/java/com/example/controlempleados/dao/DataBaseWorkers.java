@@ -77,7 +77,11 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
         db.execSQL(SQL_TABLE_WORKERS);
 
+<<<<<<< HEAD
         this.importarEmpleados(db);
+=======
+
+>>>>>>> cdd6b30867d003e2d23ee3c417a15adad7c16428
     }
 
     @Override
@@ -142,26 +146,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         return arrListaEmpleados;
     }
 
-    private void importarEmpleados(SQLiteDatabase db){
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(this.context.getResources().openRawResource(R.raw.workers)));
 
-            String line = "";
-            String query = "";
-            int count = 0;
-
-            while ((line = br.readLine()) != null) {
-                db.execSQL(line);
-                count++;
-            }
-
-            Toast.makeText(context, "Insertados: " + count, Toast.LENGTH_LONG);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public Empleado getEmpleado(String nombre){
         Empleado e = null;
@@ -228,6 +213,13 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
 
         query.executeUpdateDelete();
 
+        this.cerrarBaseDatos(database);
+    }
+
+    public void insertarWoker(String q){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL(q);
         this.cerrarBaseDatos(database);
     }
 }

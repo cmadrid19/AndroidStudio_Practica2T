@@ -21,7 +21,7 @@ import java.net.URL;
 
 public class DetalleEmpleadoActivity extends AppCompatActivity {
 
-    private static final String TAG = "DetalleEmpleadoActivity";
+    private static final String TAG = DetalleEmpleadoActivity.class.getSimpleName();
     private ImageView img;
     private ProgressBar progressImg;
 

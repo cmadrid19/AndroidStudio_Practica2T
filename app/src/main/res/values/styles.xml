@@ -1,4 +1,4 @@
-<resources>
+<resources >
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+<<<<<<< HEAD
     <style name="formGroup">
         <item name="android:padding">10dp</item>
     </style>
@@ -23,4 +24,7 @@
     <style name="formBtnSuccess">
         <item name="android:textSize">15dp</item>
     </style>
+=======
+
+>>>>>>> cdd6b30867d003e2d23ee3c417a15adad7c16428
 </resources>

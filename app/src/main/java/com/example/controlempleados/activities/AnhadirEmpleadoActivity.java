@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class AnhadirEmpleadoActivity extends AppCompatActivity {
 
-    private static final String TAG = "AñadirEmpleadoAcivity";
+    private static final String TAG = AnhadirEmpleadoActivity.class.getSimpleName();
     private String error = "";
 
     EditText edFechaNacimiento;
@@ -84,7 +84,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
             Empleado e = new Empleado(nombre, apellido, email, gender, phone, direccion, avatar, departamento, lengua, fechaContra, fechaNaci);
 
             //Insertando empleado en la BBDD
-            DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
+            DataBaseWorkers dbw = new DataBaseWorkers(this, getResources().getString(R.string.bd_nombre_empleados), null, 1);
             dbw.insertarWoker(e);
             Log.d(TAG, "hola");
             Log.d(TAG, "Empleado añadidio: "+dbw.getEmpleado(e.getFirstName()));

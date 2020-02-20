@@ -3,7 +3,6 @@ package com.example.controlempleados.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,12 +30,17 @@ import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.dao.DataBaseWorkers;
 import com.example.controlempleados.utiles.AdapterEmpleados;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
+
 
     private RecyclerView recView;
     private ArrayList<Empleado> datos;
@@ -47,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         /*
         TODO
         * 1. Mejorar aspecto recyclerview
@@ -58,13 +62,32 @@ public class MainActivity extends AppCompatActivity {
         TODO hcer un estilo para meter bordes a las filas del recycler
         * */
 
-        final DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
+        final DataBaseWorkers dbw = new DataBaseWorkers(this, getResources().getString(R.string.bd_nombre_empleados), null, 1);
+
+        //importar fichero workers.sql como ejemplo
+        //Solo cargará una vez que la app este instalada.
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("firstTime", false)) {
+            // run your one time code
+            importarEmpleados(dbw);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
+
 
         datos = dbw.getEmpleados();
 
-        for (int x = 0; x < datos.size(); x++) {
-            Log.d(TAG, "El adapter tiene: " + String.valueOf(datos.get(x)));
+        try{
+            for (int x = 0; x < datos.size(); x++) {
+                Log.d(TAG, "El adapter tiene: " + String.valueOf(datos.get(x)));
+            }
+        }catch (NullPointerException e){
+            e.getMessage();
         }
+
+
 
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
         recView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         recView.setLayoutAnimation(controller);
 
         //cargar datos
+
         recView.setAdapter(adaptador);
 
         //Slide raws - Borrar empleado
@@ -176,5 +200,26 @@ public class MainActivity extends AppCompatActivity {
     public void updateAdatperEmplepadoNuevo(Empleado e) {
         this.datos.add(e);
         this.adaptador.notifyDataSetChanged();
+    }
+
+    private void importarEmpleados(DataBaseWorkers dbw){
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.workers)));
+
+            String line = "";
+            int count = 0;
+            while ((line = br.readLine()) != null) {
+                //db.execSQL(line);
+                Log.d("BaseDa", line);
+                dbw.insertarWoker(line);
+                count++;
+            }
+
+            Toast.makeText(this, "Insertados: " + count, Toast.LENGTH_LONG);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
