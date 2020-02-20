@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
+        db = new DataBaseUsers(this, getResources().getString(R.string.bd_nombre_usuarios), null, 1);
         checkLoginGuardado();
 
         usuario = (EditText) findViewById(R.id.edittext_usuario);

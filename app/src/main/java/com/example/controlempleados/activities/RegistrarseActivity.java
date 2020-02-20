@@ -80,9 +80,14 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     public void escogerFecha(View view) {
         //Para que no se abra el teclado
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        showDatePickerDialog();
+        try{
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            showDatePickerDialog();
+        }catch (IllegalStateException e){
+            e.getMessage();
+        }
+
     }
 
 

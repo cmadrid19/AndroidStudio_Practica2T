@@ -147,9 +147,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
             BufferedReader br = new BufferedReader(new InputStreamReader(this.context.getResources().openRawResource(R.raw.workers)));
 
             String line = "";
-            String query = "";
             int count = 0;
-
             while ((line = br.readLine()) != null) {
                 db.execSQL(line);
                 count++;

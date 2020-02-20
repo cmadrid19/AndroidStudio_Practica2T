@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+
     private RecyclerView recView;
     private ArrayList<Empleado> datos;
     private AdapterEmpleados adaptador;
