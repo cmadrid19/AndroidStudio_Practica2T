@@ -221,10 +221,13 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         this.cerrarBaseDatos(database);
     }
 
-
-    public void insertarEmploeado(String insert) {
+    public void borrarEmpleado(Empleado e){
         SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL(insert);
+
+        SQLiteStatement query = database.compileStatement("DELETE FROM WORKERS WHERE id LIKE "+"\""+ e.getId() +"\"");
+
+        query.executeUpdateDelete();
+
         this.cerrarBaseDatos(database);
     }
 }

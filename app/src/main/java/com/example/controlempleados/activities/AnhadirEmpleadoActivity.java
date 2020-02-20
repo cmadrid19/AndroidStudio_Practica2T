@@ -43,8 +43,6 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         edNombreEmpleado = findViewById(R.id.edTxNombre);
         edApellidoEmpleado = findViewById(R.id.edTxApellido);
         edAvatar = findViewById(R.id.edTxAvatar);
-
-
     }
 
     public void introducirEmpleado(View view) {

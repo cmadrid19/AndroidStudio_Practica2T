@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
@@ -40,16 +41,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO HAY QUE CONVERTIR el fichero 'Workers.sql' que se encuentra en la raiz del proyecto a .db  ;Creo que se puede de csv a SQLite
+
         /*
-           - Modelo Usuario Registrarse y entrar.
-        * 1. Recycler view: handleview, modelo,
-        * 2. BBDD
+        TODO
+        * 1. Mejorar aspecto recyclerview
+        * 2. Iconos en menu superior
+        3. Terminar añadir empleado con la BBDD- > notificar el adater que los datos han cambiado y ademas meterlo en la bbdd
+
 
         TODO hcer un estilo para meter bordes a las filas del recycler
         * */
 
-        DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
+        final DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
 
         datos = dbw.getEmpleados();
 
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                //Borrarlo de la base de datos
+                Empleado e  = datos.get(viewHolder.getAdapterPosition());
+                dbw.borrarEmpleado(e);
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.has_eliminado_empleado) + e.toString(),Toast.LENGTH_SHORT).show();
+                //Borrarlo de los datos
                 datos.remove(viewHolder.getAdapterPosition());
                 adaptador.notifyDataSetChanged();
 
@@ -119,8 +127,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         limpiarSharedPreference();
+        //para finish todas las actividades anteriores
+        Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
+        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
     }
 
     private void limpiarSharedPreference(){
@@ -132,10 +143,11 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+
+
     //TODO es necesario?
     public void updateAdatperEmplepadoNuevo(Empleado e) {
         this.datos.add(e);
         this.adaptador.notifyDataSetChanged();
     }
-
 }
