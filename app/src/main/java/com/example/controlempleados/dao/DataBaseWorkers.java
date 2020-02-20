@@ -76,12 +76,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + ")";
 
         db.execSQL(SQL_TABLE_WORKERS);
-
-<<<<<<< HEAD
-        this.importarEmpleados(db);
-=======
-
->>>>>>> cdd6b30867d003e2d23ee3c417a15adad7c16428
     }
 
     @Override
