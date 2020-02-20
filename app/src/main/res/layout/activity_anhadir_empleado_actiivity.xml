@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/nombre"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxNombre"
@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:hint="@string/nombre"
-            android:textSize="18sp"></EditText>
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/apellido"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxApellido"
@@ -56,11 +57,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:hint="@string/apellido"
-            android:textSize="18sp"></EditText>
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout5"
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:weightSum="100"
@@ -69,36 +71,64 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:text="@string/email"
+            android:textSize="12sp"></TextView>
+
+        <EditText
+            android:id="@+id/edTxEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="65"
+            android:hint="@string/email"
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:weightSum="100"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/genero"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <RadioGroup
-            android:layout_weight="65"
             android:id="@+id/sexo_grupo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="65"
             android:gravity="center"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/btn_sexo_f"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:checked="false"
-                android:text="@string/sexo_f"
+                android:text="@string/sexo_female"
                 android:textColor="@color/grisOscuro"
                 android:textSize="20dp" />
 
             <RadioButton
                 android:id="@+id/btn_sexo_m"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:checked="false"
-                android:text="@string/sexo_m"
+                android:text="@string/sexo_male"
                 android:textColor="@color/grisOscuro"
                 android:textSize="20dp" />
         </RadioGroup>
@@ -108,8 +138,10 @@
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
         android:weightSum="100"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
@@ -119,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/telefono"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxTlfn"
@@ -128,11 +160,11 @@
             android:layout_weight="65"
             android:hint="@string/telefono"
             android:inputType="number"
-            android:textSize="18sp"></EditText>
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
+        android:id="@+id/linearLayout12"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:weightSum="100"
@@ -141,12 +173,40 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="35"
+            android:text="@string/direccion"
+            android:textSize="12sp"></TextView>
+
+        <EditText
+            android:id="@+id/edTxDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="65"
+            android:hint="@string/direccion"
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
+
+        <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/avatar"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxAvatar"
@@ -155,7 +215,7 @@
             android:layout_weight="65"
             android:hint="@string/avatar"
             android:inputType="textUri"
-            android:textSize="18sp"></EditText>
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -173,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/departamento"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxDepartamento"
@@ -181,7 +241,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:hint="@string/departamento"
-            android:textSize="18sp"></EditText>
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -199,7 +260,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/lengua"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
             android:id="@+id/edTxLengua"
@@ -207,7 +268,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="65"
             android:hint="@string/lengua"
-            android:textSize="18sp"></EditText>
+            android:inputType="text"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -225,8 +287,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/fecha_contratación"
-            android:textSize="18sp"></TextView>
-
+            android:textSize="12sp"></TextView>
 
 
         <EditText
@@ -234,13 +295,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="65"
-            android:textSize="18sp"
-            android:onClick="escogerFechaEmpleado"
             android:focusable="false"
             android:gravity="center"
             android:hint="@string/dd_mm_aaaa"
-            android:inputType="date"
-            android:maxLines="1" ></EditText>
+            android:maxLines="1"
+            android:onClick="escogerFechaContratación"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -253,64 +313,36 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="35"
             android:text="@string/fecha_nacimiento"
-            android:textSize="18sp"></TextView>
+            android:textSize="12sp"></TextView>
 
         <EditText
-            android:id="@+id/edTxFechanacimiento"
+            android:id="@+id/edTxFechaNacimiento1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="65"
-            android:textSize="18sp"
-            android:onClick="escogerFecha"
             android:focusable="false"
             android:gravity="center"
             android:hint="@string/dd_mm_aaaa"
-            android:inputType="date"
-            android:maxLines="1"></EditText>
+            android:maxLines="1"
+            android:onClick="escogerFechaNacimiento"
+            android:textSize="12sp"></EditText>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout11"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:weightSum="100"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="35"
-            android:text="@string/nacionalidad"
-            android:textSize="18sp"></TextView>
-
-
-        <!--TODO cambiar por spinner???-->
-        <EditText
-            android:id="@+id/edTxnacionalidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="65"
-            android:hint="@string/nacionalidad"
-            android:textSize="18sp"></EditText>
-    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/aceptar"
         android:onClick="introducirEmpleado"
+        android:text="@string/aceptar"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline9">
-    </Button>
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10"></Button>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -331,7 +363,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

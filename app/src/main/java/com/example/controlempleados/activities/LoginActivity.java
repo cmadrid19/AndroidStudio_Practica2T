@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
 
+        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
         checkLoginGuardado();
 
         usuario = (EditText) findViewById(R.id.edittext_usuario);
@@ -69,12 +70,15 @@ public class LoginActivity extends AppCompatActivity {
      * @param password
      */
     public void anadirUsuarioPrefs(String name, String password) {
-        SharedPreferences prefs;
-        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putString("name", name);
-        edit.putString("password", password);
-        edit.commit();
+        CheckBox cbRecordarme = findViewById(R.id.checkBoxRecuerdame);
+        if (cbRecordarme.isChecked()) {
+            SharedPreferences prefs;
+            prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putString("name", name);
+            edit.putString("password", password);
+            edit.commit();
+        }
     }
 
 
@@ -108,11 +112,5 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, getResources().getString(R.string.sin_conexion_internet), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    //TODO falta
-    //Es el metodo al que llamamos cuando hacemos click en ¿Has olvidado tu contraseña?
-    public void restablecerPassword(View view) {
-
     }
 }

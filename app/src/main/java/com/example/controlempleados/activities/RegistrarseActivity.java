@@ -1,10 +1,9 @@
 package com.example.controlempleados.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +16,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.User;
 import com.example.controlempleados.dao.DataBaseUsers;
 import com.example.controlempleados.utiles.DatePickerFragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,7 +71,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         spinner = findViewById(R.id.paises_spinner);
         paises = new ArrayList<String>();
         paises.add(getResources().getString(R.string.pais_no_seleccionado));
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,paises);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, paises);
         spinner.setAdapter(adapter);
         new GetCountryNames().execute();
 
@@ -96,13 +98,25 @@ public class RegistrarseActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    private boolean validarFechaNacimiento(){
+    private Boolean validarUsuario() {
+        Boolean rellenado = false;
+
+        String usuario = ediTxRecogeUsuario.getText().toString();
+        if (!usuario.matches("")) {
+            rellenado = true;
+        } else {
+            error = getResources().getString(R.string.usuario_no_introducido);
+        }
+        return rellenado;
+    }
+
+    private boolean validarFechaNacimiento() {
         Boolean fechaEscogida = false;
 
         String fecha = ediTxPlannedDatePicker.getText().toString();
-        if (!fecha.matches("")){
+        if (!fecha.matches("")) {
             fechaEscogida = true;
-        }else{
+        } else {
             error = getResources().getString(R.string.fecha_no_escogida);
         }
         return fechaEscogida;
@@ -113,7 +127,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         int selectedId = radioSexo.getCheckedRadioButtonId();
         if (selectedId != -1) {
             elegido = true;
-        }else{
+        } else {
             error = getResources().getString(R.string.genero_no_escogido);
         }
         return elegido;
@@ -122,11 +136,12 @@ public class RegistrarseActivity extends AppCompatActivity {
     private Boolean validarSpinner() {
         Boolean paisSeleccionado = false;
         String text = spinner.getSelectedItem().toString();
-        if (text.equals(this.getResources().getString(R.string.pais_no_seleccionado))){
+        if (text.equals(this.getResources().getString(R.string.pais_no_seleccionado))) {
             error = getResources().getString(R.string.pais_no_seleccionado);
-        }{
+        }
+        {
             paisSeleccionado = true;
-            Log.d(TAG, "El país seleccionado es: "+text);
+            Log.d(TAG, "El país seleccionado es: " + text);
         }
         return paisSeleccionado;
     }
@@ -137,9 +152,9 @@ public class RegistrarseActivity extends AppCompatActivity {
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()){
+        if (matcher.matches()) {
             emailCheck = true;
-        }else{
+        } else {
             error = getResources().getString(R.string.email_formato_incorrecto);
         }
         return emailCheck;
@@ -147,7 +162,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     public boolean comprobarPassword() {
         Boolean correcta = false;
-        if (editTextPassword.getText().toString().equals(editTextRepeatPassword.getText().toString())){
+        if (editTextPassword.getText().toString().equals(editTextRepeatPassword.getText().toString())) {
             correcta = true;
         } else {
             error = getResources().getString(R.string.contrasenha_no_coincide);
@@ -163,7 +178,8 @@ public class RegistrarseActivity extends AppCompatActivity {
                 && validarEmail(email)
                 && comprobarPassword()
                 && validarSpinner()
-                && validarFechaNacimiento()) {
+                && validarFechaNacimiento()
+                && validarUsuario()) {
 
             String usuario = ediTxRecogeUsuario.getText().toString();
             String pass = editTextPassword.getText().toString();
@@ -180,7 +196,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             Log.d(TAG, "el sexo del usuario es: " + sexo);
             Log.d(TAG, "La nacionalidad es: " + nacionalidad);
 
-            User user = new User(email,usuario, pass, fechaNacimiento, sexo, nacionalidad);
+            User user = new User(email, usuario, pass, fechaNacimiento, sexo, nacionalidad);
             db.insertarUser(user);
 
             Intent intent = (new Intent(this, LoginActivity.class));
@@ -194,15 +210,17 @@ public class RegistrarseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this, LoginActivity.class));
+        //para finish todas las actividades anteriores
+        Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
+        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
         this.finish();
     }
 
 
-
     class GetCountryNames extends AsyncTask<String, Void, Void> {
         private ArrayAdapter<String> adapter;
-        private Boolean error = false;
+        private Boolean errorBool = false;
 
         @Override
         protected void onPreExecute() {
@@ -229,7 +247,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                 while ((linea = br.readLine()) != null) {
                     sb.append(linea + "\n");
                 }
-                Log.d(TAG, sb.toString()+"" );
+                Log.d(TAG, sb.toString() + "");
                 br.close();
                 resultado = sb.toString();
 
@@ -238,7 +256,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                 // Obtiene el JSON como un array de datos
                 jsonArray = json.getJSONArray("result");
-                Log.d(TAG, jsonArray.toString()+"" );
+                Log.d(TAG, jsonArray.toString() + "");
                 AbstractQueue<String> listaDatos = null;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Log.d(TAG, "pais recibido: " + jsonArray.getJSONObject(i).getString("name"));
@@ -247,11 +265,11 @@ public class RegistrarseActivity extends AppCompatActivity {
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 ioe.printStackTrace();
-                error = true;
+                errorBool = true;
             } catch (JSONException e) {
                 e.printStackTrace();
             } finally {
-                if(urlConnection != null){
+                if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
             }
@@ -271,12 +289,12 @@ public class RegistrarseActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void resultado) {
             super.onPostExecute(resultado);
-            if (error) {
+            if (errorBool) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_mensage), Toast.LENGTH_SHORT).show();
             } else {
                 // Actualiza los cambios en ListView
                 this.adapter.notifyDataSetChanged();
-                adapter = new ArrayAdapter<String> (getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, paises);
+                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, paises);
                 spinner.setAdapter(adapter);
             }
         }

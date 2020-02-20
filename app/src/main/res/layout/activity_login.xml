@@ -72,20 +72,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/btn_crear_cuenta_nueva" />
 
-    <Button
-        android:id="@+id/btn_olvidado_password"
-        android:layout_width="0dp"
+    <CheckBox
+        android:id="@+id/checkBoxRecuerdame"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:onClick="restablecerPassword"
-        android:text="@string/olvidado_password"
+        android:text="@string/recuerda_me"
         android:textSize="12dp"
         android:textColor="@color/negro"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintStart_toStartOf="@+id/guideline3" />
-
+        app:layout_constraintStart_toStartOf="@+id/guideline3"></CheckBox>
     <Button
         android:id="@+id/btn_crear_cuenta_nueva"
         android:layout_width="0dp"

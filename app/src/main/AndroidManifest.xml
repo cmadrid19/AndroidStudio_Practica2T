@@ -14,18 +14,22 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.DetalleEmpleadoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:label="@string/info_empleado"></activity>
         <activity
             android:name=".activities.AcercaDeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="@string/acerca_de"/>
         <activity
             android:name=".activities.AnhadirEmpleadoActivity"
-            android:screenOrientation="portrait" />
-        <!--//TODO crear un xml para portrait y horizontal-->
-        <activity android:name=".activities.MainActivity" />
+            android:screenOrientation="portrait"
+            android:label="@string/anhadir_empelado"/>
+        <activity android:name=".activities.MainActivity"
+            android:label="@string/lista_de_empleados"/>
         <activity
             android:name=".activities.RegistrarseActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="@string/crear_cuenta"/>
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait">

@@ -46,4 +46,12 @@
     <string name="genero_no_escogido">You must choose a gender</string>
     <string name="id">Id</string>
     <string name="user_pass_incorrectos">User or password incorrect</string>
+    <string name="usuario_no_introducido">User not entered</string>
+    <string name="has_eliminado_empleado">You have removed an employee</string>
+    <string name="info_empleado">Employee information</string>
+    <string name="lista_de_empleados">Employees list</string>
+    <string name="recuerda_me">Remember me</string>
+    <string name="sexo_female">Female</string>
+    <string name="sexo_male">Male</string>
+    <string name="avatar_incorrecto">The url entered is not correct</string>
 </resources>
