@@ -1,12 +1,14 @@
 package com.example.controlempleados.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
 
     private static final String TAG = "DetalleEmpleadoActivity";
     private ImageView img;
+    private CircularProgressDrawable cpdImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,11 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
         //Cargar la foto
         //TODO cambiar BASE de datos, las imagenes devueltas deben ser mayores.
         img = findViewById(R.id.imgAvatar);
+        cpdImg = findViewById(R.id.cpdImg);
         new DescargarImagen().execute(emp.getAvatar());
+
+        CircularProgressDrawable progressDrawable = new CircularProgressDrawable(this);
+        progressDrawable.draw();
     }
 
         class DescargarImagen extends AsyncTask<String, Void, Void> {
@@ -70,12 +77,12 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
 
+                cpdImg.setVisible(true, false);
             }
 
             @Override
             protected Void doInBackground(String... urls) {
 
-                Log.d(TAG, "la url es: " + urls[0]);
                 InputStream in = null;
                 int respuesta = -1;
                 HttpURLConnection httpConn = null;
@@ -115,6 +122,8 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_mensage), Toast.LENGTH_SHORT).show();
                 } else {
                     img.setImageBitmap(bitmap);
+                    img.setVisibility(View.VISIBLE);
+                    cpdImg.setVisible(false, false);
                 }
             }
         }
