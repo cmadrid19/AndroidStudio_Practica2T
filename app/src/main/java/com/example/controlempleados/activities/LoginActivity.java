@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param password
      */
     public void anadirUsuarioPrefs(String name, String password) {
-        CheckBox cbRecordarme = findViewById(R.id.cBoxRecuerdame);
+        CheckBox cbRecordarme = findViewById(R.id.checkBoxRecuerdame);
         if (cbRecordarme.isChecked()) {
             SharedPreferences prefs;
             prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);

@@ -49,11 +49,12 @@
     <string name="genero_no_escogido">Debes elegir un genero</string>
     <string name="usuario_no_introducido">Usuario no introducido</string>
     <string name="recuerda_me">Recuerdarme</string>
-    <string name="avatar_incorrecto">la url introducida no es correcta</string>
-    <string name="sexo_female">Female</string>
-    <string name="sexo_male">Male</string>
+    <string name="avatar_incorrecto">La url introducida no es correcta</string>
+    <string name="sexo_female">Mujer</string>
+    <string name="sexo_male">Hombre</string>
     <string name="lista_de_empleados">Lista de empleados</string>
     <string name="info_empleado">Información de empleado</string>
     <string name="has_eliminado_empleado">Has eliminado el empleado</string>
+    <string name="opciones">Opciones</string>
 
 </resources>

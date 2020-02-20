@@ -5,20 +5,32 @@
 
     <!--TODO Añadir iconos-->
     <item
-        android:id="@+id/menu_anhadir_empleado"
-        android:orderInCategory="1"
-        android:title="@string/anhadir_empelado"
-        app:showAsAction="never"></item>
+        android:id="@+id/menu"
+        android:icon="@drawable/options"
+        android:orderInCategory="0"
+        app:showAsAction="always"
+        android:title="@string/opciones">
+        <menu>
+            <item
+                android:id="@+id/menu_anhadir_empleado"
+                android:icon="@drawable/add_employee"
+                android:orderInCategory="1"
+                android:title="@string/anhadir_empelado"
+                app:showAsAction="never"></item>
 
-    <item
-        android:id="@+id/menu_acerca_de"
-        android:orderInCategory="3"
-        android:title="@string/acerca_de"
-        app:showAsAction="never"></item>
+            <item
+                android:id="@+id/menu_acerca_de"
+                android:icon="@drawable/about"
+                android:orderInCategory="2"
+                android:title="@string/acerca_de"
+                app:showAsAction="never"></item>
 
-    <item
-        android:id="@+id/menu_salir"
-        android:orderInCategory="4"
-        android:title="@string/salir"
-        app:showAsAction="never"></item>
+            <item
+                android:id="@+id/menu_salir"
+                android:icon="@drawable/exit_app"
+                android:orderInCategory="3"
+                android:title="@string/salir"
+                app:showAsAction="withText"></item>
+        </menu>
+    </item>
 </menu>
