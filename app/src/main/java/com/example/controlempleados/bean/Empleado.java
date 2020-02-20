@@ -9,7 +9,7 @@ public class Empleado implements Serializable {
     private String last_name;
     private String email;
     private String gender;
-    private int phone;
+    private String phone;
     private String location;
     private String avatar;
     private String department;
@@ -19,7 +19,7 @@ public class Empleado implements Serializable {
 
 
     public Empleado(int id, String firstName, String last_name, String email, String gender,
-                    int phone, String location, String avatar, String department, String language,
+                    String phone, String location, String avatar, String department, String language,
                     String hiringDate, String birthDate) {
         this.id = id;
         this.firstName = firstName;
@@ -36,7 +36,7 @@ public class Empleado implements Serializable {
     }
 
     public Empleado(String firstName, String last_name, String email, String gender,
-                    int phone, String location, String avatar, String department, String language,
+                    String phone, String location, String avatar, String department, String language,
                     String hiringDate, String birthDate) {
         this.firstName = firstName;
         this.last_name = last_name;
@@ -91,11 +91,11 @@ public class Empleado implements Serializable {
         this.gender = gender;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

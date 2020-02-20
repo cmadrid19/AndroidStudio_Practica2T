@@ -66,7 +66,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 + WORKER_SURNAME + " TEXT,"
                 + WORKER_EMAIL + " TEXT,"
                 + WORKER_GENDER + " TEXT,"
-                + WORKER_PHONE + " INTEGER,"
+                + WORKER_PHONE + " TEXT,"
                 + WORKER_LOCATION + " TEXT,"
                 + WORKER_AVATAR + " TEXT,"
                 + WORKER_DEPARTMENT + " TEXT,"
@@ -98,7 +98,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         String surname = "";
         String email = "";
         String gender = "";
-        int phone = -1;
+        String phone = "";
         String location = "";
         String avatar = "";
         String department = "";
@@ -121,7 +121,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
                 surname = cursor.getString(2);
                 email = cursor.getString(3);
                 gender = cursor.getString(4);
-                phone = cursor.getInt(5);
+                phone = cursor.getString(5);
                 location = cursor.getString(6);
                 avatar = cursor.getString(7);
                 department = cursor.getString(8);
@@ -180,7 +180,7 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
             String surname = cursor.getString(2);
             String email = cursor.getString(3);
             String gender = cursor.getString(4);
-            int phone = cursor.getInt(5);
+            String phone = cursor.getString(5);
             String location = cursor.getString(6);
             String avatar = cursor.getString(7);
             String department = cursor.getString(8);

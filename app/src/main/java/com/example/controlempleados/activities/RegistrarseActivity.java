@@ -210,7 +210,10 @@ public class RegistrarseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this, LoginActivity.class));
+        //para finish todas las actividades anteriores
+        Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
+        intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
         this.finish();
     }
 

@@ -49,7 +49,7 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
         tvLName.setText(emp.getLast_name());
         tvEmail.setText(emp.getEmail());
         tvGender.setText(emp.getGender());
-        tvPhone.setText(String.valueOf(emp.getPhone())); //TODO no coge el numero de telefono entero, creo q es por la conversion a string
+        tvPhone.setText(String.valueOf(emp.getPhone()));
         tvLocation.setText(emp.getLocation());
         tvDepartment.setText(emp.getDepartment());
         tvLanguage.setText(emp.getLanguage());
@@ -57,7 +57,6 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
         tvBirthDate.setText(emp.getBirthDate());
 
         //Cargar la foto
-        //TODO cambiar BASE de datos, las imagenes devueltas deben ser mayores.
         img = findViewById(R.id.imgAvatar);
         new DescargarImagen().execute(emp.getAvatar());
     }

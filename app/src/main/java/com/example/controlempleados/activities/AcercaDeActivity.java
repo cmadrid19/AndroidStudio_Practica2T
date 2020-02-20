@@ -17,6 +17,9 @@ public class AcercaDeActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.info);
         textView.setText(leerFichero());
+
+        //Flecha atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private String leerFichero(){

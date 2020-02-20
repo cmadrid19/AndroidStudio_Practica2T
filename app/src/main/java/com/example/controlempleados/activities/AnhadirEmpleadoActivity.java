@@ -44,6 +44,9 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         edNombreEmpleado = findViewById(R.id.edTxNombre);
         edApellidoEmpleado = findViewById(R.id.edTxApellido);
         edAvatar = findViewById(R.id.edTxAvatar);
+
+        //Flecha atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void introducirEmpleado(View view) {
@@ -70,7 +73,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
             String apellido = edApellidoEmpleado.getText().toString();
             //Email
             String gender = rb.getText().toString();
-            int phone = Integer.valueOf(edPhone.getText().toString());
+            String phone = edPhone.getText().toString();
             String direccion = edDireccion.getText().toString();
             String avatar = edAvatar.getText().toString();
             String departamento = edDepartamento.getText().toString();
@@ -200,6 +203,4 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         });
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
-    //TODO validar departamento, lengua y nacionalidad ??
 }
