@@ -52,7 +52,6 @@ public class AdapterEmpleados extends RecyclerView.Adapter<EmpleadoViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (InternetStatus.haveNetwork(ctx) == true) {
                     Intent intent = new Intent(ctx, DetalleEmpleadoActivity.class);
                     intent.putExtra("emp", emp);
@@ -62,10 +61,6 @@ public class AdapterEmpleados extends RecyclerView.Adapter<EmpleadoViewHolder> {
                 }
             }
         });
-
-        //TODO Slide a la derecha para borrar empleado
-
-
     }
 
 

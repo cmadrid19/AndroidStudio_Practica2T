@@ -3,6 +3,8 @@ package com.example.controlempleados.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         datos = dbw.getEmpleados();
 
         for (int x = 0; x < datos.size(); x++) {
-            Log.d(TAG, "El adapter tiene: "+String.valueOf(datos.get(x)));
+            Log.d(TAG, "El adapter tiene: " + String.valueOf(datos.get(x)));
         }
 
         recView = (RecyclerView) findViewById(R.id.lista_empleados);
@@ -83,12 +89,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 //Borrarlo de la base de datos
-                Empleado e  = datos.get(viewHolder.getAdapterPosition());
+                Empleado e = datos.get(viewHolder.getAdapterPosition());
                 dbw.borrarEmpleado(e);
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.has_eliminado_empleado) + e.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.has_eliminado_empleado) + e.toString(), Toast.LENGTH_SHORT).show();
                 //Borrarlo de los datos
                 datos.remove(viewHolder.getAdapterPosition());
                 adaptador.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+                final ColorDrawable background = new ColorDrawable(Color.RED);
+
+                background.setBounds(0,
+                        viewHolder.itemView.getTop(),
+                        (int) (viewHolder.itemView.getLeft() + dX),
+                        viewHolder.itemView.getBottom());
+
+                background.draw(c);
+
+
+                Drawable icon = ContextCompat.getDrawable(getApplicationContext(), R.drawable.remove_employee);
+                //TODO no se ve el icono
+                icon.setBounds(viewHolder.itemView.getRight() , 0, viewHolder.itemView.getRight() - 10, 0 + icon.getIntrinsicHeight());
+                icon.draw(c);
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
             }
         };
@@ -136,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent2);
     }
 
-    private void limpiarSharedPreference(){
+    private void limpiarSharedPreference() {
         //Borramos el usuario guardado
         SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -144,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         editor.apply();
     }
-
 
 
     //TODO es necesario?

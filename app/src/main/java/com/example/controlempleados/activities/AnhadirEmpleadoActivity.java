@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 public class AnhadirEmpleadoActivity extends AppCompatActivity {
 
+    private static final String TAG = "AñadirEmpleadoAcivity";
     private String error = "";
 
     EditText edFechaNacimiento;
@@ -82,8 +83,8 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
             //Insertando empleado en la BBDD
             DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
             dbw.insertarWoker(e);
-            Log.d("AñadirEmplAcivity", "hola");
-            Log.d("AñadirEmplAcivity", "Empleado añadidio: "+dbw.getEmpleado(e.getFirstName()));
+            Log.d(TAG, "hola");
+            Log.d(TAG, "Empleado añadidio: "+dbw.getEmpleado(e.getFirstName()));
 
             //notificar adapter
             new MainActivity().updateAdatperEmplepadoNuevo(e);
@@ -180,8 +181,12 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
 
     private void mantenerTecladoCerrado() {
         //Para que no se abra el teclado
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        try{
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }catch (IllegalStateException e){
+            Log.d(TAG, e.getMessage());
+        }
     }
 
     private void showDatePickerDialog(final EditText editText) {
