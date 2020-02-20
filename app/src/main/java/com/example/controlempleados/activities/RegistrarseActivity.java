@@ -51,7 +51,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     RadioGroup radioSexo;
 
     private Spinner spinner;
-    private ArrayList paises;
+    private ArrayList<String> paises;
 
     private String error = "";
 
@@ -71,7 +71,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         spinner = findViewById(R.id.paises_spinner);
         paises = new ArrayList<String>();
         paises.add(getResources().getString(R.string.pais_no_seleccionado));
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, paises);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paises);
         spinner.setAdapter(adapter);
         new GetCountryNames().execute();
 
@@ -138,11 +138,11 @@ public class RegistrarseActivity extends AppCompatActivity {
         String text = spinner.getSelectedItem().toString();
         if (text.equals(this.getResources().getString(R.string.pais_no_seleccionado))) {
             error = getResources().getString(R.string.pais_no_seleccionado);
-        }
-        {
+        }else{
             paisSeleccionado = true;
             Log.d(TAG, "El país seleccionado es: " + text);
         }
+
         return paisSeleccionado;
     }
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.controlempleados.R;
@@ -22,7 +23,7 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
 
     private static final String TAG = "DetalleEmpleadoActivity";
     private ImageView img;
-    private CircularProgressDrawable cpdImg;
+    private ProgressBar progressImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +62,10 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
 
         //Cargar la foto
         img = findViewById(R.id.imgAvatar);
-        cpdImg = findViewById(R.id.cpdImg);
-        new DescargarImagen().execute(emp.getAvatar());
+        progressImg = findViewById(R.id.progressImg);
+        progressImg.setIndeterminate(true);
 
-        CircularProgressDrawable progressDrawable = new CircularProgressDrawable(this);
-        progressDrawable.draw();
+        new DescargarImagen().execute(emp.getAvatar());
     }
 
         class DescargarImagen extends AsyncTask<String, Void, Void> {
@@ -76,7 +76,8 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                cpdImg.setVisible(true, false);
+                img.setVisibility(View.GONE);
+                progressImg.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -122,7 +123,7 @@ public class DetalleEmpleadoActivity extends AppCompatActivity {
                 } else {
                     img.setImageBitmap(bitmap);
                     img.setVisibility(View.VISIBLE);
-                    cpdImg.setVisible(false, false);
+                    progressImg.setVisibility(View.GONE);
                 }
             }
         }

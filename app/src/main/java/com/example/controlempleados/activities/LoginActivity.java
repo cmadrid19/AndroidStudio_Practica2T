@@ -19,9 +19,10 @@ import com.example.controlempleados.utiles.InternetStatus;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
-    TextView usuario;
-    TextView password;
+    TextView inUsuario;
+    TextView inPassword;
     DataBaseUsers db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         db = new DataBaseUsers(this, "miBaseDatos", null, 1);
         checkLoginGuardado();
 
-        usuario = (EditText) findViewById(R.id.edittext_usuario);
-        password = (EditText) findViewById(R.id.edittext_password_logn_in);
-
+        inUsuario = (EditText) findViewById(R.id.edittext_usuario);
+        inPassword = (EditText) findViewById(R.id.edittext_password_logn_in);
     }
 
     //metodo al que llamamos cuando hacemos click en ENTRAR
@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         String nombreUsuario;
         String contrasenhaUsuario;
 
-        nombreUsuario = usuario.getText().toString();
-        contrasenhaUsuario = password.getText().toString();
+        nombreUsuario = inUsuario.getText().toString();
+        contrasenhaUsuario = inPassword.getText().toString();
 
         Log.d(TAG, "El usario es: " + nombreUsuario);
         Log.d(TAG, "la contraseña es: " + nombreUsuario);
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param view
      */
     public void crearCuentaNueva(View view) {
-        if (InternetStatus.haveNetwork(this) == true) {
+        if (InternetStatus.haveNetwork(this)) {
             Intent intent = new Intent(this, RegistrarseActivity.class);
             startActivity(intent);
         } else {

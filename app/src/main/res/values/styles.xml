@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="formGroup">
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="formLabel">
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="formInput">
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="formBtnSuccess">
+        <item name="android:textSize">15dp</item>
+    </style>
 </resources>
