@@ -44,7 +44,4 @@ public class AcercaDeActivity extends AppCompatActivity {
         }
         return info;
     }
-
-    public void escogerFechaNacimiento(View view) {
-    }
 }

@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         * 1. Mejorar aspecto recyclerview
         * 2. Iconos en menu superior
         3. Terminar añadir empleado con la BBDD- > notificar el adater que los datos han cambiado y ademas meterlo en la bbdd
+        4. añadir supportbuttonbar para ir atras
+
 
 
         TODO hcer un estilo para meter bordes a las filas del recycler

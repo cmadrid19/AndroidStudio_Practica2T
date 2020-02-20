@@ -3,9 +3,7 @@ package com.example.controlempleados.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -219,7 +217,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
     class GetCountryNames extends AsyncTask<String, Void, Void> {
         private ArrayAdapter<String> adapter;
-        private Boolean error = false;
+        private Boolean errorBool = false;
 
         @Override
         protected void onPreExecute() {
@@ -264,7 +262,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 ioe.printStackTrace();
-                error = true;
+                errorBool = true;
             } catch (JSONException e) {
                 e.printStackTrace();
             } finally {
@@ -288,7 +286,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void resultado) {
             super.onPostExecute(resultado);
-            if (error) {
+            if (errorBool) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_mensage), Toast.LENGTH_SHORT).show();
             } else {
                 // Actualiza los cambios en ListView

@@ -89,7 +89,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
             new MainActivity().updateAdatperEmplepadoNuevo(e);
 
         } else {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT);
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -196,5 +196,5 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    //TODO valdiar departamento, lengua y nacionalidad ??
+    //TODO validar departamento, lengua y nacionalidad ??
 }
