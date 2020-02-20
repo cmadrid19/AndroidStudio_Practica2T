@@ -144,8 +144,7 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
     }
 
     private boolean validarAvatar() {
-        //TODO cambiar a false
-        Boolean correcto = true;
+        Boolean correcto = false;
         String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(edAvatar.getText().toString());
