@@ -18,7 +18,7 @@ import com.example.controlempleados.utiles.InternetStatus;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = LoginActivity.class.getSimpleName();
     TextView usuario;
     TextView password;
     DataBaseUsers db;

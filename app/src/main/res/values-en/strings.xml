@@ -54,4 +54,7 @@
     <string name="sexo_female">Female</string>
     <string name="sexo_male">Male</string>
     <string name="avatar_incorrecto">The url entered is not correct</string>
+    <string name="bd_nombre_empleados">bbddWorkers</string>
+    <string name="bd_nombre_usuarios">bbddUsers</string>
+    <string name="opciones">Options</string>
 </resources>

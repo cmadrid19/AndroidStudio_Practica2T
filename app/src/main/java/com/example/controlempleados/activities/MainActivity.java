@@ -3,7 +3,6 @@ package com.example.controlempleados.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView recView;
     private ArrayList<Empleado> datos;
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         /*
         TODO
         * 1. Mejorar aspecto recyclerview
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         TODO hcer un estilo para meter bordes a las filas del recycler
         * */
 
-        final DataBaseWorkers dbw = new DataBaseWorkers(this, "Prueba", null, 1);
+        final DataBaseWorkers dbw = new DataBaseWorkers(this, getResources().getString(R.string.bd_nombre_empleados), null, 1);
 
         datos = dbw.getEmpleados();
 

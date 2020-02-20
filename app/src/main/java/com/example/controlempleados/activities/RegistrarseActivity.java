@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    private static final String TAG = "CrearCuentaNuevaActivit";
+    private static final String TAG = RegistrarseActivity.class.getSimpleName();
     private static DataBaseUsers db = null;
 
     EditText ediTxRecogeUsuario;
@@ -59,7 +59,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
-        db = new DataBaseUsers(this, "miBaseDatos", null, 1);
+        db = new DataBaseUsers(this, getResources().getString(R.string.bd_nombre_usuarios), null, 1);
 
         radioSexo = findViewById(R.id.sexo_grupo);
         ediTxRecogeUsuario = (EditText) findViewById(R.id.edittext_usuario);

@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class AnhadirEmpleadoActivity extends AppCompatActivity {
 
-    private static final String TAG = "AñadirEmpleadoAcivity";
+    private static final String TAG = AnhadirEmpleadoActivity.class.getSimpleName();
     private String error = "";
 
     EditText edFechaNacimiento;
