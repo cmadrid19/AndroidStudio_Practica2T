@@ -142,61 +142,6 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         return arrListaEmpleados;
     }
 
-    public void SetTablaEmpleados() {
-        String ListaQueries = "";
-
-        List<Empleado> listaEmpleados = null;
-        Empleado empleado = null;
-
-        int id = -1;
-        String name = "";
-        String surname = "";
-        String email = "";
-        String gender = "";
-        int phone = -1;
-        String location = "";
-        String avatar = "";
-        String department = "";
-        String language = "";
-        String hiringDate = "";
-        String birthDate = "";
-        String nationality = "";
-
-        String consulta = "SELECT * FROM WORKERS";
-
-        SQLiteDatabase basedatos = this.getReadableDatabase();
-        Cursor cursor = basedatos.rawQuery(consulta, null);
-
-
-        if (cursor != null && cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            listaEmpleados = new ArrayList<Empleado>(cursor.getCount());
-            do {
-                id = cursor.getInt(0);
-                name = cursor.getString(1);
-                surname = cursor.getString(2);
-                email = cursor.getString(3);
-                gender = cursor.getString(4);
-                phone = cursor.getInt(5);
-                location = cursor.getString(6);
-                avatar = cursor.getString(7);
-                department = cursor.getString(8);
-                language = cursor.getString(9);
-                hiringDate = cursor.getString(10);
-                birthDate = cursor.getString(11);
-
-
-                empleado = new Empleado(id, name, surname, email, gender, phone, location, avatar,
-                        department, language, hiringDate, birthDate);
-
-                listaEmpleados.add(empleado);
-
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
-        this.cerrarBaseDatos(basedatos);
-    }
-
     private void importarEmpleados(SQLiteDatabase db){
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(this.context.getResources().openRawResource(R.raw.workers)));
@@ -218,23 +163,58 @@ public class DataBaseWorkers extends SQLiteOpenHelper {
         }
     }
 
-    private void insertarWoker(Empleado e){
+    public Empleado getEmpleado(String nombre){
+        Empleado e = null;
+
+        String consulta = "SELECT * FROM WORKERS WHERE first_name LIKE "+"\""+ nombre +"\"";
+
+        SQLiteDatabase basedatos = this.getReadableDatabase();
+        Cursor cursor = basedatos.rawQuery(consulta, null);
+
+        if( cursor != null && cursor.getCount() >0)
+        {
+            cursor.moveToFirst();
+
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String surname = cursor.getString(2);
+            String email = cursor.getString(3);
+            String gender = cursor.getString(4);
+            int phone = cursor.getInt(5);
+            String location = cursor.getString(6);
+            String avatar = cursor.getString(7);
+            String department = cursor.getString(8);
+            String language = cursor.getString(9);
+            String hiringDate = cursor.getString(10);
+            String birthDate = cursor.getString(11);
+
+            e = new Empleado(id,name, surname, email, gender, phone, location, avatar, department, language, hiringDate, birthDate);
+
+            cursor.close();
+        }
+
+        this.cerrarBaseDatos(basedatos);
+
+        return e;
+    }
+
+    public void insertarWoker(Empleado e){
         SQLiteDatabase database = this.getWritableDatabase();
 
-        SQLiteStatement query = database.compileStatement("INSERT INTO USERS (id,name, sur_name,email, gender, phone, location, avatar, department" +
-                ",language, hiring_date, birth_date) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)");
-        query.bindString(1, String.valueOf(e.getId()));
-        query.bindString(2, e.getFirstName());
-        query.bindString(3, e.getLast_name());
-        query.bindString(4, e.getEmail());
-        query.bindString(5, e.getGender());
-        query.bindString(6, String.valueOf(e.getPhone()));
-        query.bindString(7, e.getLocation());
-        query.bindString(8, e.getAvatar());
-        query.bindString(9, e.getDepartment());
-        query.bindString(10, e.getLanguage());
-        query.bindString(11, e.getHiringDate());
-        query.bindString(12, e.getBirthDate());
+        SQLiteStatement query = database.compileStatement("INSERT INTO WORKERS (first_name, last_name,email, gender, phone, location, avatar, department" +
+                ",language, hiring_date, birth_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        query.bindString(1, e.getFirstName());
+        query.bindString(2, e.getLast_name());
+        query.bindString(3, e.getEmail());
+        query.bindString(4, e.getGender());
+        query.bindString(5, String.valueOf(e.getPhone()));
+        query.bindString(6, e.getLocation());
+        query.bindString(7, e.getAvatar());
+        query.bindString(8, e.getDepartment());
+        query.bindString(9, e.getLanguage());
+        query.bindString(10, e.getHiringDate());
+        query.bindString(11, e.getBirthDate());
 
         query.executeInsert();
 

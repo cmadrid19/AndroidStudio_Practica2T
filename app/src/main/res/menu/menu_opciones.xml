@@ -11,12 +11,6 @@
         app:showAsAction="never"></item>
 
     <item
-        android:id="@+id/menu_borrar_empleado"
-        android:orderInCategory="2"
-        android:title="@string/borrar_empelado"
-        app:showAsAction="never"></item>
-
-    <item
         android:id="@+id/menu_acerca_de"
         android:orderInCategory="3"
         android:title="@string/acerca_de"

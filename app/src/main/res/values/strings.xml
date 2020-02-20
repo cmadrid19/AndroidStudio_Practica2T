@@ -48,5 +48,9 @@
     <string name="fecha_no_escogida">Debes escoger una fecha</string>
     <string name="genero_no_escogido">Debes elegir un genero</string>
     <string name="usuario_no_introducido">Usuario no introducido</string>
+    <string name="recuerda_me">Recuerdarme</string>
+    <string name="avatar_incorrecto">la url introducida no es correcta</string>
+    <string name="sexo_female">Female</string>
+    <string name="sexo_male">Male</string>
 
 </resources>

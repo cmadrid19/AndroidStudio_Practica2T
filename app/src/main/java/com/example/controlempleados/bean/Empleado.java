@@ -33,7 +33,22 @@ public class Empleado implements Serializable {
         this.language = language;
         this.hiringDate = hiringDate;
         this.birthDate = birthDate;
+    }
 
+    public Empleado(String firstName, String last_name, String email, String gender,
+                    int phone, String location, String avatar, String department, String language,
+                    String hiringDate, String birthDate) {
+        this.firstName = firstName;
+        this.last_name = last_name;
+        this.email = email;
+        this.gender = gender;
+        this.phone = phone;
+        this.location = location;
+        this.avatar = avatar;
+        this.department = department;
+        this.language = language;
+        this.hiringDate = hiringDate;
+        this.birthDate = birthDate;
     }
 
     public int getId() {

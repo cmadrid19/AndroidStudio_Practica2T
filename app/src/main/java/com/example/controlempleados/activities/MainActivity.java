@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 datos.remove(viewHolder.getAdapterPosition());
                 adaptador.notifyDataSetChanged();
+
             }
         };
         new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView(recView);
@@ -97,14 +98,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 break;
             case R.id.menu_salir:
-                // Eliminamos preferencias de login
-                SharedPreferences prefs;
-                prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit = prefs.edit();
-                edit.putString("name", "");
-                edit.putString("password", "");
-                edit.commit();
-                finish();
+                limpiarSharedPreference();
+                //para finish todas las actividades anteriores
+                Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent2);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -118,6 +116,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+        limpiarSharedPreference();
+    }
+
+    private void limpiarSharedPreference(){
+        //Borramos el usuario guardado
+        SharedPreferences prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.commit();
+        editor.apply();
+    }
+
+    //TODO es necesario?
+    public void updateAdatperEmplepadoNuevo(Empleado e) {
+        this.datos.add(e);
+        this.adaptador.notifyDataSetChanged();
+    }
 
 }
