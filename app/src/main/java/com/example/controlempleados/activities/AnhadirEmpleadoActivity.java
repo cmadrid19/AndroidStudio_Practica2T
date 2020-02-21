@@ -1,8 +1,8 @@
 package com.example.controlempleados.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.example.controlempleados.R;
 import com.example.controlempleados.bean.Empleado;
 import com.example.controlempleados.dao.DataBaseWorkers;
@@ -45,8 +44,6 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
         edApellidoEmpleado = findViewById(R.id.edTxApellido);
         edAvatar = findViewById(R.id.edTxAvatar);
 
-        //Flecha atras
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void introducirEmpleado(View view) {
@@ -86,11 +83,12 @@ public class AnhadirEmpleadoActivity extends AppCompatActivity {
             //Insertando empleado en la BBDD
             DataBaseWorkers dbw = new DataBaseWorkers(this, getResources().getString(R.string.bd_nombre_empleados), null, 1);
             dbw.insertarWoker(e);
-            Log.d(TAG, "hola");
+
             Log.d(TAG, "Empleado añadidio: "+dbw.getEmpleado(e.getFirstName()));
 
-            //notificar adapter
-            new MainActivity().updateAdatperEmplepadoNuevo(e);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
 
         } else {
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show();

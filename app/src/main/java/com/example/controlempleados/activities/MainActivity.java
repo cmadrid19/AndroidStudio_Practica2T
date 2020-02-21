@@ -52,16 +52,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-        TODO
-        * 1. Mejorar aspecto recyclerview
-        * 2. Iconos en menu superior
-        3. Terminar añadir empleado con la BBDD- > notificar el adater que los datos han cambiado y ademas meterlo en la bbdd
-        4. añadir supportbuttonbar para ir atras
-
-        TODO hcer un estilo para meter bordes a las filas del recycler
-        * */
-
         final DataBaseWorkers dbw = new DataBaseWorkers(this, getResources().getString(R.string.bd_nombre_empleados), null, 1);
 
         //importar fichero workers.sql como ejemplo
@@ -132,12 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
                 background.draw(c);
 
-
-                Drawable icon = ContextCompat.getDrawable(getApplicationContext(), R.drawable.remove_employee);
-                //TODO no se ve el icono
-                icon.setBounds(viewHolder.itemView.getRight() , 0, viewHolder.itemView.getRight() - 10, 0 + icon.getIntrinsicHeight());
-                icon.draw(c);
-
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
             }
@@ -193,13 +177,6 @@ public class MainActivity extends AppCompatActivity {
         editor.clear();
         editor.commit();
         editor.apply();
-    }
-
-
-    //TODO es necesario?
-    public void updateAdatperEmplepadoNuevo(Empleado e) {
-        this.datos.add(e);
-        this.adaptador.notifyDataSetChanged();
     }
 
     private void importarEmpleados(DataBaseWorkers dbw){

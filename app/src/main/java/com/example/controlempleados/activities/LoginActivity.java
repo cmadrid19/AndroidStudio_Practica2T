@@ -31,6 +31,11 @@ public class LoginActivity extends AppCompatActivity {
         db = new DataBaseUsers(this, getResources().getString(R.string.bd_nombre_usuarios), null, 1);
         checkLoginGuardado();
 
+        //Este usuario sirve para acceder directamente y no tener que hacer un usuario siempre
+        User user = new User("a@supercuenta.com", "a", "a", "10-10-2000", 'F', "España");
+        db.insertarUser(user);
+
+
         inUsuario = (EditText) findViewById(R.id.edittext_usuario);
         inPassword = (EditText) findViewById(R.id.edittext_password_logn_in);
     }
